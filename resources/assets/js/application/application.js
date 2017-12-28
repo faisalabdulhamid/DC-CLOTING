@@ -16,7 +16,7 @@ swalPlugin.install = function(Vue){
 }
 Vue.use(swalPlugin)
 var _http = axios.create({
-    baseURL: `http://localhost:8000`
+    baseURL: ``
 });
 _http.interceptors.response.use((response) => {
     return response;

@@ -1,1 +1,1 @@
-export const app_name = "DC Cloting"
+export const app_name = "DC Clothing"

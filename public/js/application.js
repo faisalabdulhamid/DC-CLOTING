@@ -15797,7 +15797,7 @@ swalPlugin.install = function (Vue) {
 };
 Vue.use(swalPlugin);
 var _http = axios.create({
-    baseURL: 'http://localhost:8000'
+    baseURL: ''
 });
 _http.interceptors.response.use(function (response) {
     return response;
@@ -37122,7 +37122,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return app_name; });
-var app_name = "DC Cloting";
+var app_name = "DC Clothing";
 
 /***/ }),
 /* 67 */
