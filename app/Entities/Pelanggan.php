@@ -29,4 +29,9 @@ class Pelanggan extends Model
     		'kota_id' => $this->kota_id,
     	];
     }
+
+    public function jawaban()
+    {
+        return $this->belongsToMany(Kuesioner::class, 'jawaban_kuesioner', 'pelanggan_id', 'kuesioner_id');
+    }
 }

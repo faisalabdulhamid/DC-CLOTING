@@ -1,8 +1,14 @@
 <?php
 
-Auth::routes();
+Route::get('/', function(){
+	return view('application.index');
+});
 
-Route::get('/', function () {
+
+
+// Auth::routes();
+
+Route::get('/a', function () {
 	$title = config('app.name');
 	$script  = '';
     return view('home', compact('title', 'script'));

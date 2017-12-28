@@ -47,7 +47,7 @@ class PelangganController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
-            'no_telepon' => 'required|unique:pelanggan',
+            'no_telepon' => 'required|numeric|unique:pelanggan|min:12',
             'kota_id' => 'required',
         ]);
 
@@ -68,8 +68,9 @@ class PelangganController extends Controller
      * @param  \App\Entities\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function show(Pelanggan $pelanggan)
+    public function show($id)
     {
+        $pelanggan = Pelanggan::find($id);
         return response()->json($pelanggan, 200);
     }
 
@@ -95,7 +96,7 @@ class PelangganController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
-            'no_telepon' => 'required',
+            'no_telepon' => 'required|numeric|min:12',
             'kota_id' => 'required',
         ]);
 
@@ -105,7 +106,7 @@ class PelangganController extends Controller
         $pelanggan->save();
 
         return response()->json([
-            'message' => 'Data Berhasil Ditambahkan'
+            'message' => 'Data Berhasil Diubah'
         ], 201);
     }
 
@@ -115,8 +116,9 @@ class PelangganController extends Controller
      * @param  \App\Entities\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pelanggan $pelanggan)
+    public function destroy($id)
     {
+        $pelanggan = Pelanggan::find($id);
         $pelanggan->delete();
 
         return response()->json([

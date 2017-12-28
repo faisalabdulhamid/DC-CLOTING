@@ -1,9 +1,13 @@
 require('./../bootstrap');
+import {base_url, api_token} from './../config/env.config'
 
 window.Vue = require('vue');
 
 const _http = axios.create({
-  	baseURL: 'http://localhost:8000/api/kota',
+  	baseURL: base_url+'api/kota',
+  	headers: {
+  		Authorization : `Bearer ${api_token}`
+  	}
 });
 
 Vue.prototype.$http = _http
@@ -14,8 +18,6 @@ import App from './components/App.vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 import router from './router.js'
-
-import store from './store/index'
 
 const swal = require('sweetalert2')
 const swalPlugin = {}
@@ -28,6 +30,5 @@ const app = new Vue({
     el: '#root',
     template: '<app></app>',
     components: { App },
-    router,
-    store,
+    router
 });

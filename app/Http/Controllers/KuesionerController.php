@@ -27,17 +27,6 @@ class KuesionerController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return response()
-            ->json(Kuesioner::init());
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -46,16 +35,14 @@ class KuesionerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'soal' => 'required',
-            'pegawai_id' => 'required',
+            'soal' => 'required'
         ]);
         $kuesioner = new Kuesioner();
         $kuesioner->soal = $request->soal;
-        $kuesioner->pegawai_id = $request->pegawai_id;
         $kuesioner->save();
 
         return response()->json([
-            'message' => 'Data Berhasil Diubah'
+            'message' => 'Data Berhasil Ditambahkan'
         ], 201);
     }
 
@@ -88,15 +75,13 @@ class KuesionerController extends Controller
      * @param  \App\Entities\Kuesioner  $kuesioner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kuesioner $kuesioner)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'soal' => 'required',
-            'pegawai_id' => 'required',
         ]);
-
+        $kuesioner = Kuesioner::find($id);
         $kuesioner->soal = $request->soal;
-        $kuesioner->pegawai_id = $request->pegawai_id;
         $kuesioner->save();
 
         return response()->json([
@@ -117,5 +102,73 @@ class KuesionerController extends Controller
         return response()->json([
             'message' => 'Data Berhasil Dihapus'
         ], 201);
+    }
+
+
+    //Hasil Kuesioner
+    public function hasil()
+    {
+        $kuesioner = new Kuesioner();
+        $kuesioner = $kuesioner
+                        ->has('jawaban')
+                        ->get();
+        $data = [];
+        foreach ($kuesioner as $key => $k) {
+            // (totalResponden / jumlahResponden) * 100
+            $row = [];
+            $row['soal'] = $k->soal;
+            $responden = $k->withCount('jawaban')
+                                        ->get();
+            $sangat_perlu = $k->withCount(['jawaban' => function($query){
+                            $query->where('nilai', 1);
+                        }])->get();
+            $perlu = $k->withCount(['jawaban' => function($query){
+                            $query->where('nilai', 2);
+                        }])->get();
+            $cukup = $k->withCount(['jawaban' => function($query){
+                            $query->where('nilai', 3);
+                        }])->get();
+            $tidak_perlu = $k->withCount(['jawaban' => function($query){
+                            $query->where('nilai', 4);
+                        }])->get();
+            $sangat_tidak_perlu = $k->withCount(['jawaban' => function($query){
+                            $query->where('nilai', 5);
+                        }])->get();
+            $jumlah_responden = $responden[$key]->jawaban_count;
+            // $row['jumlah_responden'] = $jumlah_responden;
+            $dt = [];
+            $dt_ = [];
+            $dt_['nilai'] = round(($sangat_perlu[$key]->jawaban_count/$jumlah_responden)*100, 2);
+            $dt_['label'] = 'Sangat Perlu';
+            $dt[] = $dt_;
+
+            $dt_ = [];
+            $dt_['nilai'] = round(($perlu[$key]->jawaban_count/$jumlah_responden)*100, 2);
+            $dt_['label'] = 'Perlu';
+            $dt[] = $dt_;
+
+            $dt_ = [];
+            $dt_['nilai'] = round(($cukup[$key]->jawaban_count/$jumlah_responden)*100, 2);
+            $dt_['label'] = 'Cukup';
+            $dt[] = $dt_; 
+
+            $dt_ = [];
+            $dt_['nilai'] = round(($tidak_perlu[$key]->jawaban_count/$jumlah_responden)*100, 2);
+            $dt_['label'] = 'Tidak Perlu';
+            $dt[] = $dt_; 
+
+            $dt_ = [];
+            $dt_['nilai'] = round(($sangat_tidak_perlu[$key]->jawaban_count/$jumlah_responden)*100, 2);
+            $dt_['label'] = 'Sangat Tidak Perlu';
+            $dt[] = $dt_; 
+
+            $row['jawaban'] = $dt;
+            
+            // $row['']
+
+            $data[] = $row;
+        }
+
+        return response()->json($data);
     }
 }

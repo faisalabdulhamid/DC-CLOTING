@@ -66,8 +66,9 @@ class KotaController extends Controller
      * @param  \App\Entities\Kota  $kotum
      * @return \Illuminate\Http\Response
      */
-    public function show(Kota $kotum)
+    public function show($id)
     {
+        $kotum = Kota::with('provinsi')->get()->find($id);
         return response()->json($kotum, 200);
     }
 

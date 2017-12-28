@@ -31,4 +31,14 @@ class Kuesioner extends Model
     		'pegawai_id' => $this->pegawai_id,
     	];
     }
+
+    public function jawaban()
+    {
+        return $this->belongsToMany(Pelanggan::class, 'jawaban_kuesioner', 'kuesioner_id', 'pelanggan_id');
+    }
+
+    public function scopeSangatPerlu($query)
+    {
+        // return $query->where('');
+    }
 }

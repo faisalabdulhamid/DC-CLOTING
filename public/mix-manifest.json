@@ -1,8 +1,3 @@
 {
-    "/js/pelanggan.js": "/js/pelanggan.js",
-    "/js/pegawai.js": "/js/pegawai.js",
-    "/js/kuesioner.js": "/js/kuesioner.js",
-    "/js/kota.js": "/js/kota.js",
-    "/js/home.js": "/js/home.js",
-    "/js/login.js": "/js/login.js"
+    "/js/application.js": "/js/application.js"
 }

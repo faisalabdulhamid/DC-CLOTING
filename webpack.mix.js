@@ -12,11 +12,11 @@ let mix = require('laravel-mix');
  */
 
 mix
-	.js('resources/assets/js/kota/kota.js', 'public/js')
-	.js('resources/assets/js/kuesioner/kuesioner.js', 'public/js')
-	.js('resources/assets/js/pegawai/pegawai.js', 'public/js')
-	.js('resources/assets/js/pelanggan/pelanggan.js', 'public/js')
-	.js('resources/assets/js/login/login.js', 'public/js')
-	.js('resources/assets/js/home/home.js', 'public/js')
+	.js('resources/assets/js/application/application.js', 'public/js')
+	// .js('resources/assets/js/kuesioner/kuesioner.js', 'public/js')
+	// .js('resources/assets/js/pegawai/pegawai.js', 'public/js')
+	// .js('resources/assets/js/pelanggan/pelanggan.js', 'public/js')
+	// .js('resources/assets/js/login/login.js', 'public/js')
+	// .js('resources/assets/js/home/home.js', 'public/js')
 	// .js('resources/assets/js/app.js', 'public/js')
  //    .sass('resources/assets/sass/app.scss', 'public/css');

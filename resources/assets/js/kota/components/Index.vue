@@ -56,51 +56,26 @@
 				table: {}
 			}
 		},
-		computed:{
-			...mapGetters({
-				token: 'oauth'
-			})
-		},
 		methods:{
-			...mapActions({
-				'Oauth': 'setOauth',
-			}),
 			getData(){
 				let that = this
-				that.$http.get('', {
-					headers: {
-						Authorization: that.token.token_type+' '+that.token.access_token
-					}
-				}).then(res => {
+				that.$http.get('')
+				.then(res => {
 					Vue.set(that.$data, 'table', res.data)
-				}).catch(error => {
-					console.log(error)
 				})
 			},
 			next(){
 				let that = this
-				that.$http.get(that.table.next_page_url, {
-					headers: {
-						Authorization: that.token.token_type+' '+that.token.access_token
-					}
-				}).then(res => {
-					Vue.set(that.$data, 'model', res.data.data)
+				that.$http.get(that.table.next_page_url)
+				.then(res => {
 					Vue.set(that.$data, 'table', res.data)
-				}).catch(error => {
-					console.log(error)
 				})
 			},
 			prev(){
 				let that = this
-				that.$http.get(that.table.prev_page_url, {
-					headers: {
-						Authorization: that.token.token_type+' '+that.token.access_token
-					}
-				}).then(res => {
-					Vue.set(that.$data, 'model', res.data.data)
+				that.$http.get(that.table.prev_page_url)
+				.then(res => {
 					Vue.set(that.$data, 'table', res.data)
-				}).catch(error => {
-					console.log(error)
 				})
 			},
 			hapus(id){
@@ -125,20 +100,14 @@
 							}).then(() => {
 								that.getData()
 							})
-						}).catch(err => {
-							console.log(err)
 						})
 					}
 				})
 			}
 			
 		},
-		created(){
-			this.Oauth()
-			this.getData()
-		},
 		beforeMount(){
-			
+			this.getData()
 		}
 	}
 </script>

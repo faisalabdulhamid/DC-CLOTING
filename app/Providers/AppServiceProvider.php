@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Entities\Kuesioner;
+use App\Entities\Produk;
+use App\Observers\KuesionerObserver;
+use App\Observers\ProdukObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Kuesioner::observe(KuesionerObserver::class);
+        Produk::observe(ProdukObserver::class);
     }
 
     /**
