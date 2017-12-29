@@ -38,10 +38,11 @@
         <li v-bind:class="{'active': menuName == 'pelanggan'}"><router-link :to="{name:'pelanggan-index', params:{id:''}}"><span>Pelanggan</span> <i class="icon-users"></i></router-link></li>
         <li v-bind:class="{'active': menuName == 'kategori'}"><router-link :to="{name:'kategori-index', params:{id:''}}"><span>Kategori</span> <i class="icon-users"></i></router-link></li>
         <li v-bind:class="{'active': menuName == 'produk'}"><router-link :to="{name:'produk-index', params:{id:''}}"><span>Produk</span> <i class="icon-users"></i></router-link></li>
+        <li v-bind:class="{'active': menuName == 'promosi'}"><router-link :to="{name:'promosi-index', params:{id:''}}"><span>Promosi</span> <i class="icon-users"></i></router-link></li>
 
         <li v-bind:class="{'active': menuName == 'hasil-kuesioner'}"><router-link :to="{name:'hasil-kuesioner', params:{id:''}}"><span>Hasil Kuesioner</span> <i class="icon-users"></i></router-link></li>
 
-        <li v-bind:class="{'active': menuName == 'desain'}"><router-link :to="{name:'desain', params:{id:''}}"><span>Desain</span> <i class="icon-users"></i></router-link></li>
+        <li v-bind:class="{'active': menuName == 'desain'}"><router-link :to="{name:'desain-index', params:{id:''}}"><span>Desain</span> <i class="icon-users"></i></router-link></li>
         
         <li><a href="#" class="expand"><span>{{menuName}}</span> <i class="icon-coin"></i></a>
           <ul>

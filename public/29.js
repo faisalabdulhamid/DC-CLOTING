@@ -1,22 +1,22 @@
 webpackJsonp([29],{
 
-/***/ 191:
+/***/ 146:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(192);
+var content = __webpack_require__(147);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("72beade7", content, false);
+var update = __webpack_require__(38)("0722ab27", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8b859932\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8b859932\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c889b750\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c889b750\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -27,10 +27,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 192:
+/***/ 147:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(undefined);
+exports = module.exports = __webpack_require__(37)(undefined);
 // imports
 
 
@@ -42,12 +42,12 @@ exports.push([module.i, "\n.actions {\n  width: 90px;\n}\n", ""]);
 
 /***/ }),
 
-/***/ 193:
+/***/ 148:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(12);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -110,7 +110,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	name: 'Index',
 	data: function data() {
 		return {
-			url: '/api/kategori'
+			url: '/api/dc/kuesioner'
 		};
 	},
 
@@ -156,7 +156,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				showCancelButton: true
 			}).then(function (result) {
 				if (result.value) {
-					self.$http.delete('/api/kategori/' + id, {
+					self.$http.delete('api/dc/kuesioner/' + id, {
 						headers: {
 							Authorization: 'Bearer ' + self.token
 						}
@@ -186,7 +186,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 194:
+/***/ 149:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -207,7 +207,7 @@ var render = function() {
             "router-link",
             {
               staticClass: "btn btn-success btn-sm pull-right",
-              attrs: { to: { name: "kategori-tambah" } }
+              attrs: { to: { name: "kuesioner-tambah" } }
             },
             [_vm._v("Tambah")]
           )
@@ -223,7 +223,7 @@ var render = function() {
             "tbody",
             _vm._l(_vm.table.data, function(item) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(item.kategori))]),
+                _c("td", [_vm._v(_vm._s(item.soal))]),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -241,7 +241,7 @@ var render = function() {
                               {
                                 attrs: {
                                   to: {
-                                    name: "kategori-edit",
+                                    name: "kuesioner-edit",
                                     params: { id: item.id }
                                   }
                                 }
@@ -321,9 +321,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "breadcrumb-line" }, [
       _c("ul", { staticClass: "breadcrumb" }, [
-        _c("li", [_vm._v("Kategori")]),
+        _c("li", [_vm._v("Kuesioner")]),
         _vm._v(" "),
-        _c("li", { staticClass: "active" }, [_vm._v("Data Kategori")])
+        _c("li", { staticClass: "active" }, [_vm._v("Data Kuesioner")])
       ])
     ])
   },
@@ -333,7 +333,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("h6", { staticClass: "panel-title" }, [
       _c("i", { staticClass: "icon-users" }),
-      _vm._v(" Data Kategori")
+      _vm._v(" Data Kuesioner")
     ])
   },
   function() {
@@ -342,7 +342,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Kategori")]),
+        _c("th", [_vm._v("Kuesioner")]),
         _vm._v(" "),
         _c("th", { staticClass: "actions" }, [_vm._v("#")])
       ])
@@ -367,25 +367,25 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-8b859932", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-c889b750", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 92:
+/***/ 77:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(191)
+  __webpack_require__(146)
 }
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(11)
 /* script */
-var __vue_script__ = __webpack_require__(193)
+var __vue_script__ = __webpack_require__(148)
 /* template */
-var __vue_template__ = __webpack_require__(194)
+var __vue_template__ = __webpack_require__(149)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -402,7 +402,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\application\\components\\kategori\\index.vue"
+Component.options.__file = "resources\\assets\\js\\application\\components\\kuesioner\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -412,9 +412,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8b859932", Component.options)
+    hotAPI.createRecord("data-v-c889b750", Component.options)
   } else {
-    hotAPI.reload("data-v-8b859932", Component.options)
+    hotAPI.reload("data-v-c889b750", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true

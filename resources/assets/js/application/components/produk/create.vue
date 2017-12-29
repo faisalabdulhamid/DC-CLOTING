@@ -64,6 +64,7 @@
 		name: "Tambah",
 		data(){
 			return {
+				url: 'api/dc/produk',
 				data: {
 					kategori_id: '',
 					kode: '',
@@ -80,7 +81,7 @@
 		methods:{
 			simpan(){
 				let self = this
-				self.$http.post('/api/produk', self.data, {
+				self.$http.post(`${self.url}`, self.data, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
@@ -102,7 +103,7 @@
 			},
 			getKategori(){
 				let self = this
-				self.$http.get('/api/select/kategori', {
+				self.$http.get('/api/dc/select/kategori', {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}

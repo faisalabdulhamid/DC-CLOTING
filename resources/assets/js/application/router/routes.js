@@ -77,6 +77,23 @@ export default function configRouter() {
             meta: {Auth: true}
         },
 
+        { path: '/promosi', component: function(resolve){
+                require(['./../components/promosi/promosi'], resolve)
+            }, 
+            children: [
+                {name: 'promosi-index', path:'/', component: function(resolve){
+                    require(['./../components/promosi/index'], resolve)
+                }, meta:{menu: 'promosi'}},
+                {name: 'promosi-tambah', path:'/promosi/tambah', component: function(resolve){
+                    require(['./../components/promosi/create'], resolve)
+                }, meta:{menu: 'promosi'}},
+                {name: 'promosi-edit', path:'/promosi/:id/ubah', component: function(resolve){
+                    require(['./../components/promosi/edit'], resolve)
+                }, props: true, meta:{menu: 'promosi'}},
+            ],
+            meta: {Auth: true}
+        },
+
         { path: '/pelanggan', component: function(resolve){
                 require(['./../components/pelanggan/pelanggan'], resolve)
             }, 
@@ -146,9 +163,12 @@ export default function configRouter() {
             	require(['./../components/desain/desain'], resolve)
             }, 
             children: [
-            	{name: 'desain', path:'/', component: function(resolve){
+            	{name: 'desain-index', path:'/', component: function(resolve){
             		require(['./../components/desain/index'], resolve)
             	}, meta:{menu: 'desain'}},
+                {name: 'desain-tambah', path:'/desain/tambah', component: function(resolve){
+                    require(['./../components/desain/create'], resolve)
+                }, meta:{menu: 'desain'}},
             ],
             meta: {Auth: true}
         },

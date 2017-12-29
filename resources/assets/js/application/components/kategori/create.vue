@@ -38,6 +38,7 @@
 		name: "Tambah",
 		data(){
 			return {
+				url: 'api/dc/kategori',
 				data: {
 					kategori: '',
 				}
@@ -49,7 +50,7 @@
 		methods:{
 			simpan(){
 				let self = this
-				self.$http.post('/api/kategori', self.data, {
+				self.$http.post(`${self.url}`, self.data, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}

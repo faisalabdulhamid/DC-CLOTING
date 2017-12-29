@@ -51,6 +51,7 @@
 		props: ['id'],
 		data(){
 			return {
+				url: 'api/dc/pegawai',
 				data: {
 					nama: '',
 					email: '',
@@ -64,7 +65,7 @@
 		methods:{
 			getData(){
 				let self = this
-				self.$http.get(`/api/pegawai/${self.id}`, {
+				self.$http.get(`${self.url}/${self.id}`, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
@@ -74,7 +75,7 @@
 			},
 			simpan(){
 				let self = this
-				self.$http.put(`/api/pegawai/${self.id}`, self.data, {
+				self.$http.put(`${self.url}/${self.id}`, self.data, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}

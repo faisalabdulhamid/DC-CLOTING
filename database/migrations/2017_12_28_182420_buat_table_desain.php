@@ -16,8 +16,8 @@ class BuatTableDesain extends Migration
         Schema::create('desain', function (Blueprint $table) {
             $table->increments('id');
             $table->string('gambar');
-            $table->unsignedInteger('desaintable_id');
-            $table->string('desaintable_type');
+            $table->unsignedInteger('desainable_id');
+            $table->string('desainable_type');
             $table->timestamps();
         });
     }

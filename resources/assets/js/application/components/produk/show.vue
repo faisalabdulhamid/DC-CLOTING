@@ -57,6 +57,7 @@
 		props: ['id'],
 		data(){
 			return {
+				url: 'api/dc/produk',
 				data: {
 					kode: '',
 					nama: '',
@@ -72,7 +73,7 @@
 		methods:{
 			getData(){
 				let self = this
-				self.$http.get(`/api/produk/${self.id}`, {
+				self.$http.get(`${self.url}/${self.id}`, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}

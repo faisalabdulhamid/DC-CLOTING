@@ -52,6 +52,7 @@
 		name: "Tambah",
 		data(){
 			return {
+				url: 'api/dc/pelanggan',
 				data: {
 					nama: '',
 					no_telepon: '',
@@ -66,7 +67,7 @@
 		methods:{
 			simpan(){
 				let self = this
-				self.$http.post('/api/pelanggan', self.data, {
+				self.$http.post(`${self.url}`, self.data, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
@@ -88,7 +89,7 @@
 			},
 			selectKota(){
 				let self = this
-				self.$http.get(`/api/select/kota`, {
+				self.$http.get(`/api/dc/select/kota`, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}

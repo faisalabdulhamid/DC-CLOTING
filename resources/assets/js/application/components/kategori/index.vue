@@ -58,7 +58,7 @@
 		name: 'Index',
 		data(){
 			return {
-				url: '/api/kategori'
+				url: '/api/dc/kategori'
 			}
 		},
 		computed:{
@@ -106,7 +106,7 @@
 					showCancelButton: true,
 				}).then(result => {
 					if (result.value) {
-						self.$http.delete(`/api/kategori/${id}`, {
+						self.$http.delete(`${self.url}/${id}`, {
 							headers: {
 								Authorization: `Bearer ${self.token}`
 							}

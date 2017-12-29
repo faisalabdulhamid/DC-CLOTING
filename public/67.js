@@ -1,24 +1,24 @@
 webpackJsonp([67],{
 
-/***/ 223:
+/***/ 336:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(241)
+  __webpack_require__(343)
 }
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(11)
 /* script */
-var __vue_script__ = __webpack_require__(228)
+var __vue_script__ = __webpack_require__(345)
 /* template */
-var __vue_template__ = __webpack_require__(243)
+var __vue_template__ = __webpack_require__(346)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-107be3f0"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\application\\components\\hasil-kuesioner\\index.vue"
+Component.options.__file = "resources\\assets\\js\\application\\components\\promosi\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -39,9 +39,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-107be3f0", Component.options)
+    hotAPI.createRecord("data-v-06f0a720", Component.options)
   } else {
-    hotAPI.reload("data-v-107be3f0", Component.options)
+    hotAPI.reload("data-v-06f0a720", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -53,14 +53,70 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 228:
+/***/ 343:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(344);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(38)("199dd709", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-06f0a720\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-06f0a720\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 344:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(37)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.actions {\n  width: 90px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 345:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(12);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -113,7 +169,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	name: 'Index',
 	data: function data() {
 		return {
-			url: '/api/hasil-kuesioner'
+			url: '/api/dc/promosi'
 		};
 	},
 
@@ -131,21 +187,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 					Authorization: 'Bearer ' + self.token
 				}
 			}).then(function (res) {
-				var arr = res.data[1].jawaban;
-
-				// console.log(arr)
-				// arr.map((v, k) => {
-				// 	console.log(v)
-				// })
-
-				// let max = Math.max.apply(Math, arr.map(function(o){return o.nilai}))
-				// console.log(max)
-
-				var maximum = arr.reduce(function (prev, current) {
-					return prev.nilai > current.nilai ? prev : current;
-				});
-				console.log(maximum);
-
 				self.setTableVuex(res.data).then(function () {
 					self.hideLoading();
 				});
@@ -174,7 +215,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				showCancelButton: true
 			}).then(function (result) {
 				if (result.value) {
-					self.$http.delete('/api/kuesioner/' + id, {
+					self.$http.delete(self.url + '/' + id, {
 						headers: {
 							Authorization: 'Bearer ' + self.token
 						}
@@ -195,12 +236,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 					});
 				}
 			});
-		},
-		nilaiMax: function nilaiMax(nilai) {
-			return nilai.reduce(function (prev, current) {
-				return prev.nilai > current.nilai ? prev : current;
-			});
-			// return nilai;
 		}
 	}),
 	beforeMount: function beforeMount() {
@@ -210,49 +245,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 241:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(242);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(6)("55f84bd0", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-107be3f0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-107be3f0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 242:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.actions[data-v-107be3f0] {\n  width: 150px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 243:
+/***/ 346:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -260,38 +253,94 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "breadcrumb-line" }, [
-      _c("ul", { staticClass: "breadcrumb" }, [
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: { name: "kuesioner-index" } } }, [
-              _vm._v("Kuesioner")
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("li", { staticClass: "active" }, [_vm._v("Hasil Kuesioner")])
-      ])
-    ]),
+    _vm._m(0, false, false),
     _vm._v(" "),
     _c("div", { staticClass: "panel panel-default" }, [
-      _vm._m(0, false, false),
-      _vm._v(" "),
-      _c("div", { staticClass: "table-responsive" }, [
-        _c("table", { staticClass: "table table-striped table-bordered" }, [
+      _c(
+        "div",
+        { staticClass: "panel-heading" },
+        [
           _vm._m(1, false, false),
           _vm._v(" "),
           _c(
+            "router-link",
+            {
+              staticClass: "btn btn-success btn-sm pull-right",
+              attrs: { to: { name: "promosi-tambah" } }
+            },
+            [_vm._v("Tambah")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "table-responsive" }, [
+        _c("table", { staticClass: "table table-striped table-bordered" }, [
+          _vm._m(2, false, false),
+          _vm._v(" "),
+          _c(
             "tbody",
-            _vm._l(_vm.table, function(item) {
+            _vm._l(_vm.table.data, function(item) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(item.soal))]),
+                _c("td", [_vm._v(_vm._s(item.subjek))]),
                 _vm._v(" "),
-                _c("th", [_vm._v(_vm._s(_vm.nilaiMax(item.jawaban).nilai))]),
+                _c("td", [_vm._v(_vm._s(item.isi_promosi))]),
                 _vm._v(" "),
-                _c("th", [_vm._v(_vm._s(_vm.nilaiMax(item.jawaban).label))])
+                _c("td", [_vm._v(_vm._s(item.mulai_promosi))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.akhir_promosi))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "div",
+                    { staticClass: "btn-group btn-group-sm pull-right" },
+                    [
+                      _vm._m(3, true, false),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "dropdown-menu icons-right" }, [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                attrs: {
+                                  to: {
+                                    name: "promosi-edit",
+                                    params: { id: item.id }
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-pencil3" }),
+                                _vm._v(" Ubah")
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              on: {
+                                click: function($event) {
+                                  $event.stopPropagation()
+                                  _vm.hapus(item.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-user-minus" }),
+                              _vm._v(" Hapus")
+                            ]
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ])
               ])
             })
           ),
@@ -335,11 +384,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "panel-heading" }, [
-      _c("h6", { staticClass: "panel-title" }, [
-        _c("i", { staticClass: "icon-users" }),
-        _vm._v(" Data Kuesioner")
+    return _c("div", { staticClass: "breadcrumb-line" }, [
+      _c("ul", { staticClass: "breadcrumb" }, [
+        _c("li", [_vm._v("Promosi")]),
+        _vm._v(" "),
+        _c("li", { staticClass: "active" }, [_vm._v("Data Promosi")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", { staticClass: "panel-title" }, [
+      _c("i", { staticClass: "icon-users" }),
+      _vm._v(" Data Promosi")
     ])
   },
   function() {
@@ -348,13 +407,30 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Kuesioner")]),
+        _c("th", [_vm._v("Subjek")]),
         _vm._v(" "),
-        _c("th", { staticClass: "actions" }, [_vm._v("Nilai")]),
+        _c("th", [_vm._v("Isi Promosi")]),
         _vm._v(" "),
-        _c("th", { staticClass: "actions" }, [_vm._v("Keterangan")])
+        _c("th", [_vm._v("Tgl Mulai")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Tgl Akhir")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "actions" }, [_vm._v("#")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-sm btn-info dropdown-toggle",
+        attrs: { "data-toggle": "dropdown" }
+      },
+      [_vm._v(" Action"), _c("span", { staticClass: "caret" })]
+    )
   }
 ]
 render._withStripped = true
@@ -362,7 +438,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-107be3f0", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-06f0a720", module.exports)
   }
 }
 

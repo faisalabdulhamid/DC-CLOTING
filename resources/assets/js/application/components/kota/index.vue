@@ -58,7 +58,7 @@
 		name: 'Index',
 		data(){
 			return {
-				url: '/api/kota'
+				url: '/api/dc/kota'
 			}
 		},
 		computed:{
@@ -106,7 +106,7 @@
 					showCancelButton: true,
 				}).then(result => {
 					if (result.value) {
-						self.$http.delete(`/api/kota/${id}`, {
+						self.$http.delete(`${self.url}/${id}`, {
 							headers: {
 								Authorization: `Bearer ${self.token}`
 							}

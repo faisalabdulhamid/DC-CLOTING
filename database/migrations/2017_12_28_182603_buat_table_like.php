@@ -18,6 +18,7 @@ class BuatTableLike extends Migration
             // $table->timestamps();
             $table->unsignedInteger('pelanggan_id');
             $table->unsignedInteger('desain_id');
+            $table->boolean('suka');
 
             $table->foreign('pelanggan_id')
                 ->references('id')

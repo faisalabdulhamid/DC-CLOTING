@@ -47,6 +47,7 @@
 		props: ['id'],
 		data(){
 			return {
+				url: 'api/dc/kota',
 				data: {
 					kota: '',
 				},
@@ -59,7 +60,7 @@
 		methods:{
 			getData(){
 				let self = this
-				self.$http.get(`/api/kota/${self.id}`, {
+				self.$http.get(`${self.url}/${self.id}`, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
@@ -69,7 +70,7 @@
 			},
 			simpan(){
 				let self = this
-				self.$http.put(`/api/kota/${self.id}`, self.data, {
+				self.$http.put(`${self.url}/${self.id}`, self.data, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
@@ -91,7 +92,7 @@
 			},
 			getProvinsi(){
 				let self = this
-				self.$http.get('/api/select/provinsi', {
+				self.$http.get('/api/dc/select/provinsi', {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}

@@ -34,4 +34,9 @@ class Pelanggan extends Model
     {
         return $this->belongsToMany(Kuesioner::class, 'jawaban_kuesioner', 'pelanggan_id', 'kuesioner_id');
     }
+
+    public function desains()
+    {
+        return $this->morphMany(Desain::class, 'desainable');
+    }
 }

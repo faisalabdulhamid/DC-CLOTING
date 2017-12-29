@@ -50,7 +50,7 @@
 		name: 'Index',
 		data(){
 			return {
-				url: '/api/hasil-kuesioner'
+				url: '/api/dc/hasil-kuesioner'
 			}
 		},
 		computed:{
@@ -70,19 +70,6 @@
 						Authorization: `Bearer ${self.token}`
 					}
 				}).then(res => {
-					let arr = res.data[1].jawaban
-
-					// console.log(arr)
-					// arr.map((v, k) => {
-					// 	console.log(v)
-					// })
-
-					// let max = Math.max.apply(Math, arr.map(function(o){return o.nilai}))
-					// console.log(max)
-
-					let maximum = arr.reduce((prev, current) => (prev.nilai > current.nilai) ? prev : current)
-					console.log(maximum)
-
 					self.setTableVuex(res.data).then(() => {
 						self.hideLoading()	
 					})
@@ -91,47 +78,6 @@
 						setTimeout(function() {
 							self.setTable()
 						}, 1000);
-					}
-				})
-			},
-			next(){
-				this.url = this.table.next_page_url
-				this.setTable()
-			},
-			prev(){
-				this.url = this.table.prev_page_url
-				this.setTable()
-			},
-			hapus(id){
-				let self = this
-				self.$swal({
-					title: "Apakah anda yakin menghapus Data Ini ?",
-					text: "Data yang terhapus Selamanya",
-					type: "warning",
-					showCancelButton: true,
-				}).then(result => {
-					if (result.value) {
-						self.$http.delete(`/api/kuesioner/${id}`, {
-							headers: {
-								Authorization: `Bearer ${self.token}`
-							}
-						})
-						.then(res => {
-							self.$swal({
-								text: res.data.message,
-								type: "success",
-								timer: 5000
-							})
-							.then(() => {
-								self.setTable()
-							})
-						}).catch(error => {
-							if (error.status === 401) {
-								setTimeout(function() {
-									self.hapus(id)
-								}, 1000);
-							}
-						})
 					}
 				})
 			},

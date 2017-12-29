@@ -1,22 +1,22 @@
 webpackJsonp([20],{
 
-/***/ 113:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(114);
+var content = __webpack_require__(227);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("5ab619bd", content, false);
+var update = __webpack_require__(38)("21cd29b6", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-16e230ab\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-16e230ab\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-befcc8a4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-befcc8a4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -27,10 +27,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 114:
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(undefined);
+exports = module.exports = __webpack_require__(37)(undefined);
 // imports
 
 
@@ -42,14 +42,17 @@ exports.push([module.i, "\n.actions {\n  width: 90px;\n}\n", ""]);
 
 /***/ }),
 
-/***/ 115:
+/***/ 228:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(12);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
 //
 //
 //
@@ -112,7 +115,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	name: 'Index',
 	data: function data() {
 		return {
-			url: '/api/pegawai'
+			url: '/api/dc/produk'
 		};
 	},
 
@@ -158,7 +161,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				showCancelButton: true
 			}).then(function (result) {
 				if (result.value) {
-					self.$http.delete('/api/pegawai/' + id, {
+					self.$http.delete(self.url + '/' + id, {
 						headers: {
 							Authorization: 'Bearer ' + self.token
 						}
@@ -188,7 +191,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 116:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -209,7 +212,7 @@ var render = function() {
             "router-link",
             {
               staticClass: "btn btn-success btn-sm pull-right",
-              attrs: { to: { name: "pegawai-tambah" } }
+              attrs: { to: { name: "produk-tambah" } }
             },
             [_vm._v("Tambah")]
           )
@@ -225,9 +228,11 @@ var render = function() {
             "tbody",
             _vm._l(_vm.table.data, function(item) {
               return _c("tr", [
+                _c("td", [_vm._v(_vm._s(item.kode))]),
+                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(item.nama))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(item.email))]),
+                _c("td", [_vm._v(_vm._s(item.harga))]),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -245,7 +250,7 @@ var render = function() {
                               {
                                 attrs: {
                                   to: {
-                                    name: "pegawai-edit",
+                                    name: "produk-edit",
                                     params: { id: item.id }
                                   }
                                 }
@@ -253,6 +258,28 @@ var render = function() {
                               [
                                 _c("i", { staticClass: "icon-pencil3" }),
                                 _vm._v(" Ubah")
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                attrs: {
+                                  to: {
+                                    name: "produk-show",
+                                    params: { id: item.id }
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-pencil3" }),
+                                _vm._v(" Lihat")
                               ]
                             )
                           ],
@@ -325,9 +352,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "breadcrumb-line" }, [
       _c("ul", { staticClass: "breadcrumb" }, [
-        _c("li", [_vm._v("Pegawai")]),
+        _c("li", [_vm._v("Produk")]),
         _vm._v(" "),
-        _c("li", { staticClass: "active" }, [_vm._v("Data Pegawai")])
+        _c("li", { staticClass: "active" }, [_vm._v("Data Produk")])
       ])
     ])
   },
@@ -337,7 +364,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("h6", { staticClass: "panel-title" }, [
       _c("i", { staticClass: "icon-users" }),
-      _vm._v(" Data Pegawai")
+      _vm._v(" Data Produk")
     ])
   },
   function() {
@@ -346,9 +373,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Nama")]),
+        _c("th", [_vm._v("Kode")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Email")]),
+        _c("th", [_vm._v("Produk")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Harga")]),
         _vm._v(" "),
         _c("th", { staticClass: "actions" }, [_vm._v("#")])
       ])
@@ -373,25 +402,25 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-16e230ab", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-befcc8a4", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 72:
+/***/ 97:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(113)
+  __webpack_require__(226)
 }
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(11)
 /* script */
-var __vue_script__ = __webpack_require__(115)
+var __vue_script__ = __webpack_require__(228)
 /* template */
-var __vue_template__ = __webpack_require__(116)
+var __vue_template__ = __webpack_require__(229)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -408,7 +437,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\application\\components\\pegawai\\index.vue"
+Component.options.__file = "resources\\assets\\js\\application\\components\\produk\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -418,9 +447,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-16e230ab", Component.options)
+    hotAPI.createRecord("data-v-befcc8a4", Component.options)
   } else {
-    hotAPI.reload("data-v-16e230ab", Component.options)
+    hotAPI.reload("data-v-befcc8a4", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true

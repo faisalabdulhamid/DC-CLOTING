@@ -50,6 +50,7 @@
 		name: "Tambah",
 		data(){
 			return {
+				url: 'api/dc/pegawai',
 				data: {
 					nama: '',
 					email: '',
@@ -63,7 +64,7 @@
 		methods:{
 			simpan(){
 				let self = this
-				self.$http.post('/api/pegawai', self.data, {
+				self.$http.post(`${self.url}`, self.data, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}

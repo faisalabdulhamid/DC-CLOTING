@@ -58,7 +58,7 @@
 		name: 'Index',
 		data(){
 			return {
-				url: '/api/kuesioner'
+				url: '/api/dc/kuesioner'
 			}
 		},
 		computed:{
@@ -106,7 +106,7 @@
 					showCancelButton: true,
 				}).then(result => {
 					if (result.value) {
-						self.$http.delete(`/api/kuesioner/${id}`, {
+						self.$http.delete(`api/dc/kuesioner/${id}`, {
 							headers: {
 								Authorization: `Bearer ${self.token}`
 							}

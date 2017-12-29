@@ -58,7 +58,7 @@
 		name: 'Index',
 		data(){
 			return {
-				url: '/api/provinsi'
+				url: '/api/dc/provinsi'
 			}
 		},
 		computed:{
@@ -106,7 +106,7 @@
 					showCancelButton: true,
 				}).then(result => {
 					if (result.value) {
-						self.$http.delete(`/api/provinsi/${id}`, {
+						self.$http.delete(`${self.url}/${id}`, {
 							headers: {
 								Authorization: `Bearer ${self.token}`
 							}

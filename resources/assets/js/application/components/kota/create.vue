@@ -46,6 +46,7 @@
 		name: "Tambah",
 		data(){
 			return {
+				url: 'api/dc/kota',
 				data: {
 					provinsi_id: '',
 					kota: '',
@@ -59,7 +60,7 @@
 		methods:{
 			simpan(){
 				let self = this
-				self.$http.post('/api/kota', self.data, {
+				self.$http.post(`${self.url}`, self.data, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
@@ -81,7 +82,7 @@
 			},
 			getProvinsi(){
 				let self = this
-				self.$http.get('/api/select/provinsi', {
+				self.$http.get('/api/dc/select/provinsi', {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}

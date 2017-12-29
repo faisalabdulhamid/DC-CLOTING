@@ -60,7 +60,7 @@
 		name: 'Index',
 		data(){
 			return {
-				url: '/api/pegawai'
+				url: '/api/dc/pegawai'
 			}
 		},
 		computed:{
@@ -108,7 +108,7 @@
 					showCancelButton: true,
 				}).then(result => {
 					if (result.value) {
-						self.$http.delete(`/api/pegawai/${id}`, {
+						self.$http.delete(`${self.url}/${id}`, {
 							headers: {
 								Authorization: `Bearer ${self.token}`
 							}

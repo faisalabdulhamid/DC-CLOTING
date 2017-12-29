@@ -53,6 +53,7 @@
 		props: ['id'],
 		data(){
 			return {
+				url: 'api/dc/pelanggan',
 				data: {
 					nama: '',
 					no_telepon: '',
@@ -67,7 +68,7 @@
 		methods:{
 			getData(){
 				let self = this
-				self.$http.get(`/api/pelanggan/${self.id}`, {
+				self.$http.get(`${self.url}/${self.id}`, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
@@ -77,7 +78,7 @@
 			},
 			simpan(){
 				let self = this
-				self.$http.put(`/api/pelanggan/${self.id}`, self.data, {
+				self.$http.put(`${self.url}/${self.id}`, self.data, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
@@ -99,7 +100,7 @@
 			},
 			selectKota(){
 				let self = this
-				self.$http.get(`/api/select/kota`, {
+				self.$http.get(`/api/dc/select/kota`, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}

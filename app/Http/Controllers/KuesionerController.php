@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\Kuesioner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KuesionerController extends Controller
 {
@@ -170,5 +171,33 @@ class KuesionerController extends Controller
         }
 
         return response()->json($data);
+    }
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function jawab(Request $request)
+    {
+        $validate = [];
+        $kuesioner = new Kuesioner();
+        foreach ($kuesioner->all() as $key => $value) {
+            $validate['jawab.'.$key] = 'required';
+        }
+        
+        $this->validate($request, $validate);
+        $user_id = Auth::user()->id;
+
+        foreach ($kuesioner->all() as $k => $v) {
+            $v->jawaban()->attach($user_id, ['nilai' => $request->jawab[$k]]);
+        }
+
+        return response()->json([
+            'message'=> 'Data Berhasil Ditambahkan'
+        ], 201);
     }
 }

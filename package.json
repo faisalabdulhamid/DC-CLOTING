@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "dotenv": "^4.0.0",
+    "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
     "sweetalert2": "^7.0.6",
     "vue-full-loading": "^1.0.3",

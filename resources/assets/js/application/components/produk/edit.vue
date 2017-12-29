@@ -65,6 +65,7 @@
 		props: ['id'],
 		data(){
 			return {
+				url: 'api/dc/produk',
 				data: {
 					kategori_id: '',
 					kode: '',
@@ -81,7 +82,7 @@
 		methods:{
 			getData(){
 				let self = this
-				self.$http.get(`/api/produk/${self.id}`, {
+				self.$http.get(`${self.url}/${self.id}`, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
@@ -91,7 +92,7 @@
 			},
 			simpan(){
 				let self = this
-				self.$http.put(`/api/produk/${self.id}`, self.data, {
+				self.$http.put(`${self.url}/${self.id}`, self.data, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
@@ -113,7 +114,7 @@
 			},
 			getKategori(){
 				let self = this
-				self.$http.get('/api/select/kategori', {
+				self.$http.get('/api/dc/select/kategori', {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}
