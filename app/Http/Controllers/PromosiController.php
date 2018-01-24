@@ -14,6 +14,12 @@ class PromosiController extends Controller
      */
     public function index()
     {
+        if (request()->all) {
+            $promosi = Promosi::tampil()->get();
+            
+            return response()
+                ->json($promosi);
+        }
         if (request()->wantsJson()) {
             $promosi = Promosi::tampil()->paginate(10);
             

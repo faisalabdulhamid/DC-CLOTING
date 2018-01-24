@@ -1,1 +1,428 @@
-webpackJsonp([13],{11:function(t,e){t.exports=function(t,e,a,n,r,i){var s,o=t=t||{},d=typeof t.default;"object"!==d&&"function"!==d||(s=t,o=t.default);var c="function"==typeof o?o.options:o;e&&(c.render=e.render,c.staticRenderFns=e.staticRenderFns,c._compiled=!0),a&&(c.functional=!0),r&&(c._scopeId=r);var u;if(i?(u=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(i)},c._ssrRegister=u):n&&(u=n),u){var l=c.functional,p=l?c.render:c.beforeCreate;l?(c._injectStyles=u,c.render=function(t,e){return u.call(e),p(t,e)}):c.beforeCreate=p?[].concat(p,u):[u]}return{esModule:s,exports:o,options:c}}},247:function(t,e,a){var n=a(248);"string"==typeof n&&(n=[[t.i,n,""]]),n.locals&&(t.exports=n.locals);a(38)("06f9df5e",n,!0)},248:function(t,e,a){(t.exports=a(37)(void 0)).push([t.i,"thead tr.soal th[data-v-4152db84]:first-child{vertical-align:middle}thead tr.jawab th[data-v-4152db84],thead tr.soal th[data-v-4152db84]:nth-child(2){text-align:center;vertical-align:middle}thead tr.jawab th[data-v-4152db84]{width:20px;word-wrap:break-word}tbody tr td[data-v-4152db84]{text-align:left}",""])},249:function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={name:"Kuesioner-Page",data:function(){return{data:{jawab:[]},kuesioner:[]}},components:{loading:function(t){a.e(50).then(function(){var e=[a(68)];t.apply(null,e)}.bind(this)).catch(a.oe)}},methods:{getData:function(){var t=this;t.$http.get("/kuesioner").then(function(e){Vue.set(t.$data,"kuesioner",e.data)})},simpan:function(){var t=this;t.$http.post("kuesioner/jawab",t.data,{headers:{Authorization:"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMzMTA4NTg0ZTQwNWJjM2Q4NmQ4NjZlMGIzNTNmMzliNTFmNjEwMzFhZjBhOTg3OWIxYjUzYjY4NjMyMmJmZmRkODMyOGVmOGZiYmZlOTdiIn0.eyJhdWQiOiIyIiwianRpIjoiMzMxMDg1ODRlNDA1YmMzZDg2ZDg2NmUwYjM1M2YzOWI1MWY2MTAzMWFmMGE5ODc5YjFiNTNiNjg2MzIyYmZmZGQ4MzI4ZWY4ZmJiZmU5N2IiLCJpYXQiOjE1MTM1NjUyMjYsIm5iZiI6MTUxMzU2NTIyNiwiZXhwIjoxNTE0ODYxMjI0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.Q08ESU0c53PJnZuVgA5L8d9Wi53ULUHxVHrqJ8KZVrpqhS7uRp5MmjywBhOWf3rdFK6RdCAUjW4noxnG0zVsD8ynAdewr6-dckgt5QYmv1IOu8XKpiNoHNYEWuG7tuO4d0b9W283GocMQvf7Pn7BUAj9Iwy2U_lEKeIUiaPHu35hlTgYARIEAJI8RtE2M4ZTwcHth6tdNyRdzOTeSiGux_fRFMfXSwJNfWKK-5eEnaxafUH5omNNiODboyrSsK6J-y-Wemd4j1LMyHcED9LZwJ1A-H_HVp4l1HUodR1a2BeV76zghcpFTLzc_Abnhjw2YfA63GNercB2Xvd0dBt6aCezJG9ERskUVRJN-p1yFC1kCiRuXLG9SqeGNMga8IM2hMZGHJwrl2NvbBRsaiPTcXyD6jRJz-eaclYbe4igOIWEuXZE1QVW4CC3PCRXcuGyus4Eanul9dMS9-hGJq_oAFnpjmkspCrLGfZW1QObxKdg-fZudCxT6US05Oee3jqVlL2aYD5bWXri7AGUodp9RrvfpVvfbCoUwYxmoiPGs2pvXoBFZbEgP71XCMYv9DcDAJfnrobSSSCiukt4F122c5UG-G06vioU0WPcKPn0Mu9lS6a7-hyA_FogDGRiLE9m_h591JD8-VFK3-DhzbDYmjiylLa4NI-RoJ858EEnc2Y"}}).then(function(e){t.$swal({text:e.data.message,type:"success",timer:5e3}).then(function(){t.$router.push({name:"home"})})})}},created:function(){this.getData()}}},250:function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("section",{staticClass:"container",attrs:{id:"main-page"}},[a("aside",{staticClass:"col-xs-12 col-sm-12 col-md-12 col-lg-12"},[a("div",{staticClass:"row content-item",attrs:{id:"contact"}},[a("div",{staticClass:"panel"},[t._m(0,!1,!1),t._v(" "),a("div",{staticClass:"panel-body"},[a("table",{staticClass:"table table-bordered"},[t._m(1,!1,!1),t._v(" "),a("tbody",t._l(t.kuesioner,function(e,n){return a("tr",[a("td",[t._v(t._s(e.soal))]),t._v(" "),a("td",[a("input",{directives:[{name:"model",rawName:"v-model",value:t.data.jawab[n],expression:"data.jawab[index]"}],attrs:{type:"radio",value:"1"},domProps:{checked:t._q(t.data.jawab[n],"1")},on:{change:function(e){t.$set(t.data.jawab,n,"1")}}})]),t._v(" "),a("td",[a("input",{directives:[{name:"model",rawName:"v-model",value:t.data.jawab[n],expression:"data.jawab[index]"}],attrs:{type:"radio",value:"2"},domProps:{checked:t._q(t.data.jawab[n],"2")},on:{change:function(e){t.$set(t.data.jawab,n,"2")}}})]),t._v(" "),a("td",[a("input",{directives:[{name:"model",rawName:"v-model",value:t.data.jawab[n],expression:"data.jawab[index]"}],attrs:{type:"radio",value:"3"},domProps:{checked:t._q(t.data.jawab[n],"3")},on:{change:function(e){t.$set(t.data.jawab,n,"3")}}})]),t._v(" "),a("td",[a("input",{directives:[{name:"model",rawName:"v-model",value:t.data.jawab[n],expression:"data.jawab[index]"}],attrs:{type:"radio",value:"4"},domProps:{checked:t._q(t.data.jawab[n],"4")},on:{change:function(e){t.$set(t.data.jawab,n,"4")}}})]),t._v(" "),a("td",[a("input",{directives:[{name:"model",rawName:"v-model",value:t.data.jawab[n],expression:"data.jawab[index]"}],attrs:{type:"radio",value:"5"},domProps:{checked:t._q(t.data.jawab[n],"5")},on:{change:function(e){t.$set(t.data.jawab,n,"5")}}})])])})),t._v(" "),a("tfoot",[a("tr",[a("td",{attrs:{colspan:"6"}},[a("a",{staticClass:"btn btn-info pull-rigth",on:{click:t.simpan}},[t._v("Simpan")])])])])])])])])])])},staticRenderFns:[function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"panel-heading"},[e("h3",{staticClass:"heading-title"},[this._v("Kuesioner")])])},function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("thead",[a("tr",{staticClass:"soal"},[a("th",{attrs:{rowspan:"2"}},[t._v("Soal")]),t._v(" "),a("th",{attrs:{colspan:"5"}},[t._v("Jawaban")])]),t._v(" "),a("tr",{staticClass:"jawab"},[a("th",{staticClass:"th"},[t._v("Sangat Perlu")]),t._v(" "),a("th",{staticClass:"th"},[t._v("Perlu")]),t._v(" "),a("th",{staticClass:"th"},[t._v("Cukup")]),t._v(" "),a("th",{staticClass:"th"},[t._v("Tidak Perlu")]),t._v(" "),a("th",{staticClass:"th"},[t._v("Sangat Tidak Perlu")])])])}]}},319:function(t,e,a){var n=a(11)(a(249),a(250),!1,function(t){a(247)},"data-v-4152db84",null);t.exports=n.exports},37:function(t,e){function a(t,e){var a=t[1]||"",n=t[3];if(!n)return a;if(e&&"function"==typeof btoa){var r=function(t){return"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(t))))+" */"}(n),i=n.sources.map(function(t){return"/*# sourceURL="+n.sourceRoot+t+" */"});return[a].concat(i).concat([r]).join("\n")}return[a].join("\n")}t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var n=a(e,t);return e[2]?"@media "+e[2]+"{"+n+"}":n}).join("")},e.i=function(t,a){"string"==typeof t&&(t=[[null,t,""]]);for(var n={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(n[i]=!0)}for(r=0;r<t.length;r++){var s=t[r];"number"==typeof s[0]&&n[s[0]]||(a&&!s[2]?s[2]=a:a&&(s[2]="("+s[2]+") and ("+a+")"),e.push(s))}},e}},38:function(t,e,a){function n(t){for(var e=0;e<t.length;e++){var a=t[e],n=c[a.id];if(n){n.refs++;for(s=0;s<n.parts.length;s++)n.parts[s](a.parts[s]);for(;s<a.parts.length;s++)n.parts.push(i(a.parts[s]));n.parts.length>a.parts.length&&(n.parts.length=a.parts.length)}else{for(var r=[],s=0;s<a.parts.length;s++)r.push(i(a.parts[s]));c[a.id]={id:a.id,refs:1,parts:r}}}}function r(){var t=document.createElement("style");return t.type="text/css",u.appendChild(t),t}function i(t){var e,a,n=document.querySelector('style[data-vue-ssr-id~="'+t.id+'"]');if(n){if(f)return h;n.parentNode.removeChild(n)}if(v){var i=p++;n=l||(l=r()),e=s.bind(null,n,i,!1),a=s.bind(null,n,i,!0)}else n=r(),e=function(t,e){var a=e.css,n=e.media,r=e.sourceMap;n&&t.setAttribute("media",n);r&&(a+="\n/*# sourceURL="+r.sources[0]+" */",a+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");if(t.styleSheet)t.styleSheet.cssText=a;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(a))}}.bind(null,n),a=function(){n.parentNode.removeChild(n)};return e(t),function(n){if(n){if(n.css===t.css&&n.media===t.media&&n.sourceMap===t.sourceMap)return;e(t=n)}else a()}}function s(t,e,a,n){var r=a?"":n.css;if(t.styleSheet)t.styleSheet.cssText=m(e,r);else{var i=document.createTextNode(r),s=t.childNodes;s[e]&&t.removeChild(s[e]),s.length?t.insertBefore(i,s[e]):t.appendChild(i)}}var o="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!o)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var d=a(39),c={},u=o&&(document.head||document.getElementsByTagName("head")[0]),l=null,p=0,f=!1,h=function(){},v="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());t.exports=function(t,e,a){f=a;var r=d(t,e);return n(r),function(e){for(var a=[],i=0;i<r.length;i++){var s=r[i];(o=c[s.id]).refs--,a.push(o)}e?n(r=d(t,e)):r=[];for(i=0;i<a.length;i++){var o=a[i];if(0===o.refs){for(var u=0;u<o.parts.length;u++)o.parts[u]();delete c[o.id]}}}};var m=function(){var t=[];return function(e,a){return t[e]=a,t.filter(Boolean).join("\n")}}()},39:function(t,e){t.exports=function(t,e){for(var a=[],n={},r=0;r<e.length;r++){var i=e[r],s=i[0],o={id:t+":"+r,css:i[1],media:i[2],sourceMap:i[3]};n[s]?n[s].parts.push(o):a.push(n[s]={id:s,parts:[o]})}return a}}});
+webpackJsonp([13],{
+
+/***/ 153:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(154);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(15)("7d2bf4ca", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-59014725\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-59014725\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 154:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(14)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.actions {\n  width: 90px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 155:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'Index',
+	data: function data() {
+		return {
+			url: '/api/dc/provinsi'
+		};
+	},
+
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({ 'table': 'table/table', 'token': 'token' })),
+	methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
+		setTableVuex: 'table/setTable',
+		showLoad: 'showLoading',
+		hideLoading: 'hideLoading'
+	}), {
+		setTable: function setTable() {
+			var self = this;
+			self.showLoad();
+			self.$http.get('' + self.url, {
+				headers: {
+					Authorization: 'Bearer ' + self.token
+				}
+			}).then(function (res) {
+				self.setTableVuex(res.data).then(function () {
+					self.hideLoading();
+				});
+			}).catch(function (error) {
+				if (error.status === 401) {
+					setTimeout(function () {
+						self.setTable();
+					}, 1000);
+				}
+			});
+		},
+		next: function next() {
+			this.url = this.table.next_page_url;
+			this.setTable();
+		},
+		prev: function prev() {
+			this.url = this.table.prev_page_url;
+			this.setTable();
+		},
+		hapus: function hapus(id) {
+			var self = this;
+			self.$swal({
+				title: "Apakah anda yakin menghapus Data Ini ?",
+				text: "Data yang terhapus Selamanya",
+				type: "warning",
+				showCancelButton: true
+			}).then(function (result) {
+				if (result.value) {
+					self.$http.delete(self.url + '/' + id, {
+						headers: {
+							Authorization: 'Bearer ' + self.token
+						}
+					}).then(function (res) {
+						self.$swal({
+							text: res.data.message,
+							type: "success",
+							timer: 5000
+						}).then(function () {
+							self.setTable();
+						});
+					}).catch(function (error) {
+						if (error.status === 401) {
+							setTimeout(function () {
+								self.hapus(id);
+							}, 1000);
+						}
+					});
+				}
+			});
+		}
+	}),
+	beforeMount: function beforeMount() {
+		this.setTable();
+	}
+});
+
+/***/ }),
+
+/***/ 156:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "panel panel-default" }, [
+      _c(
+        "div",
+        { staticClass: "panel-heading" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-success btn-sm pull-right",
+              attrs: { to: { name: "provinsi-tambah" } }
+            },
+            [_vm._v("Tambah")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "table-responsive" }, [
+        _c("table", { staticClass: "table table-striped table-bordered" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.table.data, function(item) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(item.provinsi))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "div",
+                    { staticClass: "btn-group btn-group-sm pull-right" },
+                    [
+                      _vm._m(3, true),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "dropdown-menu icons-right" }, [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                attrs: {
+                                  to: {
+                                    name: "provinsi-edit",
+                                    params: { id: item.id }
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-pencil3" }),
+                                _vm._v(" Ubah")
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              on: {
+                                click: function($event) {
+                                  $event.stopPropagation()
+                                  _vm.hapus(item.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-user-minus" }),
+                              _vm._v(" Hapus")
+                            ]
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _vm.table.next_page_url != null || _vm.table.prev_page_url != null
+            ? _c("tfoot", [
+                _c("tr", [
+                  _c("td", { attrs: { colspan: "4" } }, [
+                    _c("div", { staticClass: "btn-group btn-group-xs" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-icon btn-info",
+                          attrs: { disabled: _vm.table.prev_page_url === null },
+                          on: { click: _vm.prev }
+                        },
+                        [_c("i", { staticClass: "icon-arrow-left" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-icon btn-info",
+                          attrs: { disabled: _vm.table.next_page_url === null },
+                          on: { click: _vm.next }
+                        },
+                        [_c("i", { staticClass: "icon-arrow-right2" })]
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            : _vm._e()
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "breadcrumb-line" }, [
+      _c("ul", { staticClass: "breadcrumb" }, [
+        _c("li", [_vm._v("Provinsi")]),
+        _vm._v(" "),
+        _c("li", { staticClass: "active" }, [_vm._v("Data Provinsi")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", { staticClass: "panel-title" }, [
+      _c("i", { staticClass: "icon-users" }),
+      _vm._v(" Data Provinsi")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Provinsi")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "actions" }, [_vm._v("#")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-sm btn-info dropdown-toggle",
+        attrs: { "data-toggle": "dropdown" }
+      },
+      [_vm._v(" Action"), _c("span", { staticClass: "caret" })]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-59014725", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 75:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(153)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(155)
+/* template */
+var __vue_template__ = __webpack_require__(156)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\application\\components\\provinsi\\index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-59014725", Component.options)
+  } else {
+    hotAPI.reload("data-v-59014725", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});

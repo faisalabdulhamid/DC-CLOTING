@@ -22,6 +22,25 @@
 						<textarea class="form-control" id="soal" v-model="data.soal"></textarea>
 					</div>
 				</div>
+				Jawaban
+				<table class="table table-bordered">
+					<tbody>
+						<tr v-for="(item, idx) in jawaban">
+							<td>
+								<input class="form-control" v-model="jawaban[idx]">
+							</td>
+							<td width="180px">
+								<div class="btn-group btn-group-sm">
+									<a v-on:click="add" class="btn btn-info btn-sm">Tambah</a>
+									<a v-on:click="remove(idx)" class="btn btn-danger btn-sm">Hapus</a>	
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>Nilai Jawaban Sesuai No Urut</p>
+				<br/>
+				<br/>
 				<div class="form-actions text-right">
 					<button class="btn btn-success">Simpan</button>
 				</div>
@@ -42,13 +61,23 @@
 				url: 'api/dc/kuesioner',
 				data: {
 					soal: '',
-				}
+					jawaban: '',
+				},
+				jawaban: []
 			}
 		},
 		computed:{
 			...mapGetters({'token': 'token'})
 		},
 		methods:{
+			add () {
+				this.jawaban.push('')
+			},
+			remove (idx) {
+				if (this.jawaban.length > 1) {
+					this.jawaban.splice(idx, 1)	
+				}
+			},
 			getData(){
 				let self = this
 				self.$http.get(`${self.url}/${self.id}`, {
@@ -57,6 +86,12 @@
 					}
 				}).then(res => {
 					Vue.set(self.$data, 'data', res.data)
+					let arr = []
+					JSON.parse(res.data.jawaban).forEach((val, key) => {
+						arr.push(val.key)
+					})
+					Vue.set(self.$data, 'jawaban', arr)
+
 				})
 			},
 			simpan(){
@@ -82,7 +117,16 @@
 				})
 			}
 		},
-		beforeMount(){
+		watch: {
+			jawaban () {
+				let objPush = []
+				this.jawaban.forEach((val, key) => {
+					objPush.push({'key':val,'value':key+1})
+				})
+				this.data.jawaban = JSON.stringify(objPush)
+			}
+		},
+		created (){
 			this.getData()
 		}
 	}

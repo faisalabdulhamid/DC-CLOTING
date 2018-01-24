@@ -1,1 +1,297 @@
-webpackJsonp([15],{11:function(e,t){e.exports=function(e,t,n,a,r,i){var s,o=e=e||{},c=typeof e.default;"object"!==c&&"function"!==c||(s=e,o=e.default);var d="function"==typeof o?o.options:o;t&&(d.render=t.render,d.staticRenderFns=t.staticRenderFns,d._compiled=!0),n&&(d.functional=!0),r&&(d._scopeId=r);var u;if(i?(u=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),a&&a.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(i)},d._ssrRegister=u):a&&(u=a),u){var l=d.functional,f=l?d.render:d.beforeCreate;l?(d._injectStyles=u,d.render=function(e,t){return u.call(t),f(e,t)}):d.beforeCreate=f?[].concat(f,u):[u]}return{esModule:s,exports:o,options:d}}},221:function(e,t,n){var a=n(222);"string"==typeof a&&(a=[[e.i,a,""]]),a.locals&&(e.exports=a.locals);n(38)("32b75950",a,!0)},222:function(e,t,n){(e.exports=n(37)(void 0)).push([e.i,"aside[data-v-57e39c1f]{position:relative}",""])},223:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={name:"Home-Page",components:{loading:function(e){n.e(50).then(function(){var t=[n(68)];e.apply(null,t)}.bind(this)).catch(n.oe)}},data:function(){return{showLoading:!1}}}},228:function(e,t){e.exports={render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("section",{staticClass:"container",attrs:{id:"main-page"}},[n("aside",{staticClass:"col-xs-12 col-sm-12 col-md-12 col-lg-12"},[n("div",{staticClass:"row content-item",attrs:{id:"home"}},[e._m(0,!1,!1),e._v(" "),n("div",{staticClass:"col-md-3"},[n("div",{staticClass:"item-icon"},[n("router-link",{attrs:{to:{name:"promosi"}}},[n("i",{staticClass:"fa fa-dollar"})]),e._v(" "),n("h5",[e._v("Dapatkan diskon dan promo-promo lainnya")])],1)]),e._v(" "),n("div",{staticClass:"col-md-3"},[n("div",{staticClass:"item-icon"},[n("router-link",{attrs:{to:{name:"produk"}}},[n("i",{staticClass:"fa fa-gg"})]),e._v(" "),n("h5",[e._v("Lihat macam-macam produk-produk kami")])],1)]),e._v(" "),n("div",{staticClass:"col-md-3"},[n("div",{staticClass:"item-icon"},[n("router-link",{attrs:{to:{name:"kuesioner"}}},[n("i",{staticClass:"fa fa-question"})]),e._v(" "),n("h5",[e._v("Isi kuesioner kami agar produk-produk kami semakin baik ")])],1)]),e._v(" "),n("div",{staticClass:"col-md-3"},[n("div",{staticClass:"item-icon"},[n("router-link",{attrs:{to:{name:"desain-upload"}}},[n("i",{staticClass:"fa fa-cloud-upload"})]),e._v(" "),n("h5",[e._v("Unggah desainmu agar menjadi referensi bagi kami ")])],1)])]),e._v(" "),n("loading",{attrs:{show:e.showLoading}})],1)])},staticRenderFns:[function(){var e=this.$createElement,t=this._self._c||e;return t("div",{staticClass:"panel"},[t("div",{staticClass:"panel-heading"},[t("h3",{staticClass:"title-heading"},[this._v("Home")])])])}]}},315:function(e,t,n){var a=n(11)(n(223),n(228),!1,function(e){n(221)},"data-v-57e39c1f",null);e.exports=a.exports},37:function(e,t){function n(e,t){var n=e[1]||"",a=e[3];if(!a)return n;if(t&&"function"==typeof btoa){var r=function(e){return"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(e))))+" */"}(a),i=a.sources.map(function(e){return"/*# sourceURL="+a.sourceRoot+e+" */"});return[n].concat(i).concat([r]).join("\n")}return[n].join("\n")}e.exports=function(e){var t=[];return t.toString=function(){return this.map(function(t){var a=n(t,e);return t[2]?"@media "+t[2]+"{"+a+"}":a}).join("")},t.i=function(e,n){"string"==typeof e&&(e=[[null,e,""]]);for(var a={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(a[i]=!0)}for(r=0;r<e.length;r++){var s=e[r];"number"==typeof s[0]&&a[s[0]]||(n&&!s[2]?s[2]=n:n&&(s[2]="("+s[2]+") and ("+n+")"),t.push(s))}},t}},38:function(e,t,n){function a(e){for(var t=0;t<e.length;t++){var n=e[t],a=d[n.id];if(a){a.refs++;for(s=0;s<a.parts.length;s++)a.parts[s](n.parts[s]);for(;s<n.parts.length;s++)a.parts.push(i(n.parts[s]));a.parts.length>n.parts.length&&(a.parts.length=n.parts.length)}else{for(var r=[],s=0;s<n.parts.length;s++)r.push(i(n.parts[s]));d[n.id]={id:n.id,refs:1,parts:r}}}}function r(){var e=document.createElement("style");return e.type="text/css",u.appendChild(e),e}function i(e){var t,n,a=document.querySelector('style[data-vue-ssr-id~="'+e.id+'"]');if(a){if(p)return v;a.parentNode.removeChild(a)}if(m){var i=f++;a=l||(l=r()),t=s.bind(null,a,i,!1),n=s.bind(null,a,i,!0)}else a=r(),t=function(e,t){var n=t.css,a=t.media,r=t.sourceMap;a&&e.setAttribute("media",a);r&&(n+="\n/*# sourceURL="+r.sources[0]+" */",n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");if(e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}.bind(null,a),n=function(){a.parentNode.removeChild(a)};return t(e),function(a){if(a){if(a.css===e.css&&a.media===e.media&&a.sourceMap===e.sourceMap)return;t(e=a)}else n()}}function s(e,t,n,a){var r=n?"":a.css;if(e.styleSheet)e.styleSheet.cssText=h(t,r);else{var i=document.createTextNode(r),s=e.childNodes;s[t]&&e.removeChild(s[t]),s.length?e.insertBefore(i,s[t]):e.appendChild(i)}}var o="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!o)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var c=n(39),d={},u=o&&(document.head||document.getElementsByTagName("head")[0]),l=null,f=0,p=!1,v=function(){},m="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());e.exports=function(e,t,n){p=n;var r=c(e,t);return a(r),function(t){for(var n=[],i=0;i<r.length;i++){var s=r[i];(o=d[s.id]).refs--,n.push(o)}t?a(r=c(e,t)):r=[];for(i=0;i<n.length;i++){var o=n[i];if(0===o.refs){for(var u=0;u<o.parts.length;u++)o.parts[u]();delete d[o.id]}}}};var h=function(){var e=[];return function(t,n){return e[t]=n,e.filter(Boolean).join("\n")}}()},39:function(e,t){e.exports=function(e,t){for(var n=[],a={},r=0;r<t.length;r++){var i=t[r],s=i[0],o={id:e+":"+r,css:i[1],media:i[2],sourceMap:i[3]};a[s]?a[s].parts.push(o):n.push(a[s]={id:s,parts:[o]})}return n}}});
+webpackJsonp([15],{
+
+/***/ 157:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(158);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(15)("137c4136", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-22482f8e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./create.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-22482f8e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./create.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 158:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(14)(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 159:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: "Tambah",
+	data: function data() {
+		return {
+			url: 'api/dc/provinsi',
+			data: {
+				provinsi: ''
+			}
+		};
+	},
+
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({ 'token': 'token' })),
+	methods: {
+		simpan: function simpan() {
+			var self = this;
+			self.$http.post('' + self.url, self.data, {
+				headers: {
+					Authorization: 'Bearer ' + self.token
+				}
+			}).then(function (res) {
+				self.$swal({
+					text: res.data.message,
+					type: 'success',
+					timer: 5000
+				}).then(function () {
+					self.$router.push({ name: 'provinsi-index' });
+				});
+			}).catch(function (error) {
+				if (error.status === 401) {
+					setTimeout(function () {
+						self.simpan();
+					}, 1000);
+				}
+			});
+		}
+	}
+});
+
+/***/ }),
+
+/***/ 160:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "breadcrumb-line" }, [
+      _c("ul", { staticClass: "breadcrumb" }, [
+        _c("li", [_vm._v("Provinsi")]),
+        _vm._v(" "),
+        _c(
+          "li",
+          [
+            _c("router-link", { attrs: { to: { name: "provinsi-index" } } }, [
+              _vm._v("Data Provinsi")
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("li", { staticClass: "active" }, [_vm._v("Tambah Provinsi")])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "panel panel-default" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c(
+          "form",
+          {
+            staticClass: "form-horizontal",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                _vm.simpan($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "control-label col-md-2 text-right",
+                  attrs: { for: "provinsi" }
+                },
+                [_vm._v("Provinsi")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.data.provinsi,
+                      expression: "data.provinsi"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "provinsi" },
+                  domProps: { value: _vm.data.provinsi },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.data, "provinsi", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-heading" }, [
+      _c("h6", { staticClass: "panel-title" }, [
+        _c("i", { staticClass: "icon-users" }),
+        _vm._v(" Tambah Provinsi")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-actions text-right" }, [
+      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Simpan")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-22482f8e", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 76:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(157)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(159)
+/* template */
+var __vue_template__ = __webpack_require__(160)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\application\\components\\provinsi\\create.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-22482f8e", Component.options)
+  } else {
+    hotAPI.reload("data-v-22482f8e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});

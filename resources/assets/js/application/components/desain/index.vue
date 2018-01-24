@@ -6,14 +6,14 @@
 	        <li><router-link :to="{name: 'content'}">Home</router-link></li>
 	        <li class="active">Desain</li>
 	      </ul>
-	      <router-link :to="{name:'desain-tambah'}" class="btn btn-success btn-xs pull-right">Tambah</router-link>
+	      <router-link v-if="user.status == 'marketing'" :to="{name:'desain-tambah'}" class="btn btn-success btn-xs pull-right">Tambah</router-link>
 	    </div>
 	    <!-- /breadcrumbs line -->
 	    <div class="row">
 			<div class="col-lg-3 col-md-6 col-sm-6" v-for="item in table">
               <div class="block">
                 <div class="thumbnail">
-                	<div style="position: absolute; right: 20px; top: 20px;">
+                	<div v-if="user.status == 'marketing'" style="position: absolute; right: 20px; top: 20px;">
                 		<a class="btn btn-sm btn-danger" v-on:click.stop="hapus(item.id)"><i class="icon-remove"></i></a>
                 	</div>
                 	<img :src=item.gambar alt="">
@@ -37,7 +37,7 @@
 			}
 		},
 		computed:{
-			...mapGetters({'table':'table/table', 'token': 'token'})
+			...mapGetters({'table':'table/table', 'token': 'token', 'user': 'user/user'})
 		},
 		methods:{
 			...mapActions({
@@ -104,9 +104,3 @@
 
 	}
 </script>
-
-<style lang="scss" scoped>
-	.actions{
-		width: 150px;
-	}
-</style>

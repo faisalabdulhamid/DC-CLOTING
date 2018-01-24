@@ -13,9 +13,9 @@ let mix = require('laravel-mix');
 
 mix
 	.js('resources/assets/js/application/application.js', 'public/js')
-	.js('resources/assets/js/client/client.js', 'public/js')
-    .sass('resources/assets/sass/client.scss', 'public/css');
-
+	// .js('resources/assets/js/client/client.js', 'public/js')
+    // .sass('resources/assets/sass/client.scss', 'public/css');
+	// .sourceMaps();
 
 
 	// .js('resources/assets/js/kuesioner/kuesioner.js', 'public/js')

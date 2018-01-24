@@ -11,7 +11,7 @@
 	<div class="panel panel-default">
       	<div class="panel-heading">
         	<h6 class="panel-title"><i class="icon-users"></i> Data Pelanggan</h6>
-			<router-link :to="{name:'pelanggan-tambah'}" class="btn btn-success btn-sm pull-right">Tambah</router-link>
+			<router-link v-if="user.status == 'marketing'" :to="{name:'pelanggan-tambah'}" class="btn btn-success btn-sm pull-right">Tambah</router-link>
         </div>
         <div class="table-responsive">
 
@@ -20,14 +20,14 @@
               <tr>
                 <th>Pelanggan</th>
                 <th>No Telepon</th>
-                <th class="actions">#</th>
+                <th v-if="user.status == 'marketing'" class="actions">#</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="item in table.data">
                 <td>{{item.nama}}</td>
                 <td>{{item.no_telepon}}</td>
-                <td>
+                <td v-if="user.status == 'marketing'">
 					<div class="btn-group btn-group-sm pull-right">
 						<button class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"> Action<span class="caret"></span> </button>
 						<ul class="dropdown-menu icons-right">
@@ -64,7 +64,7 @@
 			}
 		},
 		computed:{
-			...mapGetters({'table':'table/table', 'token': 'token'})
+			...mapGetters({'table':'table/table', 'token': 'token', 'user':'user/user'})
 		},
 		methods:{
 			...mapActions({

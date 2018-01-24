@@ -22,7 +22,7 @@
 
 <script>
 	export default{
-		name: 'Promosi-Page',
+		name: 'PromosiPage',
         components: {
             'loading': function(resolve){
                 require(['./loading'], resolve)

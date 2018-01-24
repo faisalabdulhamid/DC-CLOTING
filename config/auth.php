@@ -45,6 +45,11 @@ return [
             'driver' => 'passport',
             'provider' => 'users',
         ],
+
+        'client' => [
+            'driver' => 'passport',
+            'provider' => 'client',
+        ],
     ],
 
     /*
@@ -70,10 +75,10 @@ return [
             'model' => App\Entities\Pegawai::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'client' => [
+            'driver' => 'eloquent',
+            'table' => App\Entities\Pelanggan::class,
+        ],
     ],
 
     /*
@@ -94,6 +99,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'client' => [
+            'provider' => 'client',
             'table' => 'password_resets',
             'expire' => 60,
         ],

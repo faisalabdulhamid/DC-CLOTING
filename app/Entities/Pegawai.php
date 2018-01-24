@@ -14,7 +14,9 @@ class Pegawai extends Authenticatable
     protected $hidden = [
     	'password', 'remember_token', 'created_at', 'updated_at'
     ];
-
+    // protected $visible = [
+    //     'id', 'nama', 'email', 'status'
+    // ];
     public static function init()
     {
     	return [

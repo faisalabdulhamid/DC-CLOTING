@@ -14,6 +14,9 @@ class PelangganController extends Controller
      */
     public function index()
     {
+        if (request()->all) {
+            return response()->json(Pelanggan::all());
+        }
         if (request()->wantsJson()) {
             $pelanggan = Pelanggan::paginate(10);
             

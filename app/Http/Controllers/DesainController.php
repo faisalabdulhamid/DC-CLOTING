@@ -15,7 +15,10 @@ class DesainController extends Controller
             $q->where('suka', 1);
         }, 'dislike' => function($q){
             $q->where('suka', 0);
-        }])->get();
+        }])
+        ->where('status', 1)
+        ->get();
+
     	return response()
     		->json($desain);
     }

@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+    // return \App\Entities\Pegawai::find($id);
 });
 
 // Route::apiResources(['pegawai'=>'PegawaiController']);
@@ -52,6 +53,10 @@ Route::group(['prefix' => 'dc'], function(){
 		'except' => ['edit', 'create', 'update']
 	])->middleware('auth:api');
 
+	Route::resource('transaksi', 'TransaksiController', [
+		'except' => ['create', 'edit', 'update', 'destroy']
+	])->middleware('auth:api');
+
 	Route::middleware('auth:api')->prefix('select')->group(function(){
 		Route::get('provinsi', function(){
 			$provinsi = App\Entities\Provinsi::all();
@@ -73,9 +78,19 @@ Route::get('produk', 'ProdukController@index');
 Route::get('desain', 'DesainController@index');
 Route::get('promosi', 'PromosiController@index');
 Route::get('kuesioner', function(){
+	$user_id = \Illuminate\Support\Facades\Auth::users()->id;
+	$pelanggan = \App\Entities\Pelanggan::find($user_id);
+
+	if ($pelanggan->has('jawaban')) {
+		return response()->json([
+			'title' => 'Pelanggan',
+			'message' => 'Anda Telah Mengisi jawaban Kuesioner'
+		], 401);
+	}
+
 	$kuesioner = Kuesioner::all();
 	return response()->json($kuesioner, 200);
-});
+});//->middleware('auth:api');
 Route::post('kuesioner/jawab', 'KuesionerController@jawab')->middleware('auth:api');
 Route::put('desain/like/{id}', 'DesainController@like')->middleware('auth:api');
 Route::put('desain/dislike/{id}', 'DesainController@dislike')->middleware('auth:api');

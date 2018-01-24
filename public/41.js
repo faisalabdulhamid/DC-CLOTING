@@ -1,1 +1,268 @@
-webpackJsonp([41],{129:function(t,a,e){var i=e(130);"string"==typeof i&&(i=[[t.i,i,""]]),i.locals&&(t.exports=i.locals);e(38)("42d04763",i,!0)},130:function(t,a,e){(t.exports=e(37)(void 0)).push([t.i,"",""])},131:function(t,a,e){"use strict";Object.defineProperty(a,"__esModule",{value:!0});var i=e(12),s=Object.assign||function(t){for(var a=1;a<arguments.length;a++){var e=arguments[a];for(var i in e)Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i])}return t};a.default={name:"Tambah",data:function(){return{url:"api/dc/kota",data:{provinsi_id:"",kota:""},provinsi:[]}},computed:s({},Object(i.c)({token:"token"})),methods:{simpan:function(){var t=this;t.$http.post(""+t.url,t.data,{headers:{Authorization:"Bearer "+t.token}}).then(function(a){t.$swal({text:a.data.message,type:"success",timer:5e3}).then(function(){t.$router.push({name:"kota-index"})})}).catch(function(a){401===a.status&&setTimeout(function(){t.simpan()},1e3)})},getProvinsi:function(){var t=this;t.$http.get("/api/dc/select/provinsi",{headers:{Authorization:"Bearer "+t.token}}).then(function(a){Vue.set(t.$data,"provinsi",a.data)})}},created:function(){this.getProvinsi()}}},132:function(t,a){t.exports={render:function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",[e("div",{staticClass:"breadcrumb-line"},[e("ul",{staticClass:"breadcrumb"},[e("li",[t._v("Kota")]),t._v(" "),e("li",[e("router-link",{attrs:{to:{name:"kota-index"}}},[t._v("Data Kota")])],1),t._v(" "),e("li",{staticClass:"active"},[t._v("Tambah Kota")])])]),t._v(" "),e("div",{staticClass:"panel panel-default"},[t._m(0,!1,!1),t._v(" "),e("div",{staticClass:"panel-body"},[e("form",{staticClass:"form-horizontal",on:{submit:function(a){a.preventDefault(),t.simpan(a)}}},[e("div",{staticClass:"form-group"},[e("label",{staticClass:"control-label col-md-2 text-right",attrs:{for:"provinsi_id"}},[t._v("Provinsi")]),t._v(" "),e("div",{staticClass:"col-md-10"},[e("select",{directives:[{name:"model",rawName:"v-model",value:t.data.provinsi_id,expression:"data.provinsi_id"}],staticClass:"form-control",attrs:{id:"provinsi_id"},on:{change:function(a){var e=Array.prototype.filter.call(a.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.$set(t.data,"provinsi_id",a.target.multiple?e:e[0])}}},t._l(t.provinsi,function(a){return e("option",{domProps:{value:a.id}},[t._v(t._s(a.provinsi))])}))])]),t._v(" "),e("div",{staticClass:"form-group"},[e("label",{staticClass:"control-label col-md-2 text-right",attrs:{for:"kota"}},[t._v("Kota")]),t._v(" "),e("div",{staticClass:"col-md-10"},[e("input",{directives:[{name:"model",rawName:"v-model",value:t.data.kota,expression:"data.kota"}],staticClass:"form-control",attrs:{type:"text",id:"kota"},domProps:{value:t.data.kota},on:{input:function(a){a.target.composing||t.$set(t.data,"kota",a.target.value)}}})])]),t._v(" "),t._m(1,!1,!1)])])])])},staticRenderFns:[function(){var t=this.$createElement,a=this._self._c||t;return a("div",{staticClass:"panel-heading"},[a("h6",{staticClass:"panel-title"},[a("i",{staticClass:"icon-users"}),this._v(" Tambah Kota")])])},function(){var t=this.$createElement,a=this._self._c||t;return a("div",{staticClass:"form-actions text-right"},[a("button",{staticClass:"btn btn-success"},[this._v("Simpan")])])}]}},291:function(t,a,e){var i=e(11)(e(131),e(132),!1,function(t){e(129)},null,null);t.exports=i.exports}});
+webpackJsonp([41],{
+
+/***/ 102:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(257)
+/* template */
+var __vue_template__ = __webpack_require__(258)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\application\\components\\desain\\index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c8618a96", Component.options)
+  } else {
+    hotAPI.reload("data-v-c8618a96", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 257:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'Index',
+	data: function data() {
+		return {
+			url: '/api/dc/desain'
+		};
+	},
+
+	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({ 'table': 'table/table', 'token': 'token', 'user': 'user/user' })),
+	methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
+		setTableVuex: 'table/setTable',
+		showLoad: 'showLoading',
+		hideLoading: 'hideLoading'
+	}), {
+		setTable: function setTable() {
+			var self = this;
+			self.showLoad();
+			self.$http.get('' + self.url, {
+				headers: {
+					Authorization: 'Bearer ' + self.token
+				}
+			}).then(function (res) {
+				self.setTableVuex(res.data).then(function () {
+					self.hideLoading();
+				});
+			}).catch(function (error) {
+				if (error.status === 401) {
+					setTimeout(function () {
+						self.setTable();
+					}, 1000);
+				}
+			});
+		},
+		hapus: function hapus(id) {
+			var self = this;
+			self.$swal({
+				title: "Apakah anda yakin menghapus Data Ini ?",
+				text: "Data yang terhapus Selamanya",
+				type: "warning",
+				showCancelButton: true
+			}).then(function (result) {
+				if (result.value) {
+					self.$http.delete(self.url + '/' + id, {
+						headers: {
+							Authorization: 'Bearer ' + self.token
+						}
+					}).then(function (res) {
+						self.$swal({
+							text: res.data.message,
+							type: "success",
+							timer: 5000
+						}).then(function () {
+							self.setTable();
+						});
+					}).catch(function (error) {
+						if (error.status === 401) {
+							setTimeout(function () {
+								self.hapus(id);
+							}, 1000);
+						}
+					});
+				}
+			});
+		}
+	}),
+	beforeMount: function beforeMount() {
+		this.setTable();
+	}
+});
+
+/***/ }),
+
+/***/ 258:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "breadcrumb-line" },
+      [
+        _c("ul", { staticClass: "breadcrumb" }, [
+          _c(
+            "li",
+            [
+              _c("router-link", { attrs: { to: { name: "content" } } }, [
+                _vm._v("Home")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("li", { staticClass: "active" }, [_vm._v("Desain")])
+        ]),
+        _vm._v(" "),
+        _vm.user.status == "marketing"
+          ? _c(
+              "router-link",
+              {
+                staticClass: "btn btn-success btn-xs pull-right",
+                attrs: { to: { name: "desain-tambah" } }
+              },
+              [_vm._v("Tambah")]
+            )
+          : _vm._e()
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.table, function(item) {
+        return _c("div", { staticClass: "col-lg-3 col-md-6 col-sm-6" }, [
+          _c("div", { staticClass: "block" }, [
+            _c("div", { staticClass: "thumbnail" }, [
+              _vm.user.status == "marketing"
+                ? _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        position: "absolute",
+                        right: "20px",
+                        top: "20px"
+                      }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-sm btn-danger",
+                          on: {
+                            click: function($event) {
+                              $event.stopPropagation()
+                              _vm.hapus(item.id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "icon-remove" })]
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("img", { attrs: { src: item.gambar, alt: "" } }),
+              _vm._v(" "),
+              _c("div", { staticClass: "caption text-center" }, [
+                _c("h6", [
+                  _vm._v("menyukai : " + _vm._s(item.like_count) + " "),
+                  _c("br"),
+                  _vm._v(" tidak menyukai : " + _vm._s(item.dislike_count)),
+                  _c("small", [
+                    _vm._v("Dibuat oleh: " + _vm._s(item.desainable.nama))
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c8618a96", module.exports)
+  }
+}
+
+/***/ })
+
+});

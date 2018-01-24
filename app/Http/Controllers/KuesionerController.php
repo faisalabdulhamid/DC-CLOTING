@@ -21,6 +21,7 @@ class KuesionerController extends Controller
             return response()
                 ->json($kuesioner);
         }
+        
         $title = 'Kuesioner';
         $script = asset('js/kuesioner.js');        
 
@@ -36,10 +37,12 @@ class KuesionerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'soal' => 'required'
+            'soal' => 'required',
+            'jawaban' => 'required'
         ]);
         $kuesioner = new Kuesioner();
         $kuesioner->soal = $request->soal;
+        $kuesioner->jawaban = $request->jawaban;
         $kuesioner->save();
 
         return response()->json([
@@ -80,9 +83,11 @@ class KuesionerController extends Controller
     {
         $this->validate($request, [
             'soal' => 'required',
+            'jawaban' => 'required'
         ]);
         $kuesioner = Kuesioner::find($id);
         $kuesioner->soal = $request->soal;
+        $kuesioner->jawaban = $request->jawaban;
         $kuesioner->save();
 
         return response()->json([

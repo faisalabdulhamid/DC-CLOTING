@@ -160,15 +160,29 @@ export default function configRouter() {
         },
 
         { path: '/desain', component: function(resolve){
-            	require(['./../components/desain/desain'], resolve)
+                require(['./../components/desain/desain'], resolve)
             }, 
             children: [
-            	{name: 'desain-index', path:'/', component: function(resolve){
-            		require(['./../components/desain/index'], resolve)
-            	}, meta:{menu: 'desain'}},
+                {name: 'desain-index', path:'/', component: function(resolve){
+                    require(['./../components/desain/index'], resolve)
+                }, meta:{menu: 'desain'}},
                 {name: 'desain-tambah', path:'/desain/tambah', component: function(resolve){
                     require(['./../components/desain/create'], resolve)
                 }, meta:{menu: 'desain'}},
+            ],
+            meta: {Auth: true}
+        },
+
+        { path: '/transaksi', component: function(resolve){
+            	require(['./../components/transaksi/transaksi'], resolve)
+            }, 
+            children: [
+            	{name: 'transaksi-index', path:'/', component: function(resolve){
+            		require(['./../components/transaksi/index'], resolve)
+            	}, meta:{menu: 'transaksi'}},
+                {name: 'transaksi-tambah', path:'/transaksi/tambah', component: function(resolve){
+                    require(['./../components/transaksi/create'], resolve)
+                }, meta:{menu: 'transaksi'}},
             ],
             meta: {Auth: true}
         },

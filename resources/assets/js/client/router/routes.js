@@ -17,9 +17,6 @@ export default function routes() {
 		{ name: 'kuesioner', path: '/kuesioner', component: function (resolve) {
 			require(['./../components/user-page/kuesioner.vue'], resolve)
 		}},
-		{ name: 'promosi', path: '/promosi', component: function (resolve) {
-			require(['./../components/user-page/promosi.vue'], resolve)
-		}},
 		{ name: 'about', path: '/about', component: function (resolve) {
 			require(['./../components/user-page/about.vue'], resolve)
 		}},

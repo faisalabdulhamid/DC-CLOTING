@@ -4,7 +4,13 @@
             <div class="row content-item" id="home">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="title-heading">Home</h3>
+                        <slider animation="fade">
+                            <slider-item v-for="(i, index) in list" :key="index">
+                                <div :style="i">
+                                    <p style="line-height: 280px; font-size: 2rem; text-align: center;">{{ i.isi_promosi }}</p>
+                                </div>
+                            </slider-item>
+                        </slider>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -46,17 +52,42 @@
 </template>
 
 <script>
+    import { Slider, SliderItem } from 'vue-easy-slider'
+
 	export default{
 		name: 'Home-Page',
         components: {
             'loading': function(resolve){
                 require(['./loading'], resolve)
-            }
+            },
+            Slider,
+            SliderItem
         },
         data(){
             return {
-                showLoading: false
+                showLoading: false,
+                list: [
+                    { backgroundColor: '#3f51b5', width: '100%', height: '100%' },
+                    { backgroundColor: '#eee', width: '100%', height: '100%' },
+                    { backgroundColor: '#f44336', width: '100%', height: '100%' },
+                  ],
             }
+        },
+        methods: {
+            getData () {
+                return new Promise((resolve) => {
+                    this.$http.get('/promosi?all=true')
+                        .then(res => {
+                            resolve(res.data)
+                        })
+                })
+            }
+        },
+        created () {
+            this.getData()
+                .then(res => {
+                    Vue.set(this.$data, 'list', res)
+                })
         }
 	}
 </script>

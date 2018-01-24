@@ -14,6 +14,9 @@ class ProdukController extends Controller
      */
     public function index()
     {
+        if (request()->all) {
+            return response()->json(Produk::all());
+        }
         if (request()->wantsJson()) {
             $produk = Produk::paginate(10);
             
