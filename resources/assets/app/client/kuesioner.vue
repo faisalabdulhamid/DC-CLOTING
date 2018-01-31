@@ -71,6 +71,12 @@
 		},
 		created (){
 			this.getData()
+		},
+		beforeCreate (){
+			let session = this.$session.get('user_client')
+			if (typeof session == 'undefined' || session == null) {
+				this.$router.push('/login/client')
+			}
 		}
 	}
 </script>

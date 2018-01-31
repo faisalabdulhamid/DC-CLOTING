@@ -15,13 +15,13 @@
 		                    <h6>created by {{item.desainable.nama}}</h6>
 			                <div class="item--product-btn">
 			                    <div class="item--product-btn-pesan">
-			                        <a class="btn btn-default" v-on:click="handleLike">
+			                        <a class="btn btn-default" v-on:click="handleLike(item.id)">
 			                            <i class="fa fa-thumbs-o-up"></i>
 			                            <span class="label label-warning pull-right">{{item.like_count}}</span>
 			                        </a>    
 			                    </div>
 			                    <div class="item--product-btn-whatsapp">
-			                        <a class="btn btn-default" v-on:click="handleDislike">
+			                        <a class="btn btn-default" v-on:click="handleDislike(item.id)">
 			                            <i class="fa fa-thumbs-o-down"></i>
 			                            <span class="label label-warning pull-right">{{item.dislike_count}}</span>
 			                        </a>
@@ -44,12 +44,31 @@
 				list: []
 			}
 		},
+		computed: {
+			login_client (){
+				return this.$session.get('is_client')
+			}
+		},
 		methods: {
-			handleLike () {
-
+			handleLike (id) {
+				this.$http.put(`/client/desain/like/${id}`, '', {
+					headers: {
+						Authorization: `Bearer ${this.login_client.access_token}`
+					}
+				})
+					.then(res => {
+						this.getData()
+					})
 			},
-			handleDislike () {
-
+			handleDislike (id) {
+				this.$http.put(`/client/desain/dislike/${id}`, '', {
+					headers: {
+						Authorization: `Bearer ${this.login_client.access_token}`
+					}
+				})
+					.then(res => {
+						this.getData()
+					})
 			},
 			getData () {
 				this.$http.get(`/client/desain?client=true`)

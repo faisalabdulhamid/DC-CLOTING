@@ -70,6 +70,7 @@ class DesainController extends Controller
         $desain->like()->attach($user_id, ['suka' => 1]);
 
         return response()->json([
+            'title' => 'berhasil!',
             'message' => 'Berhasil Di like',
         ], 201);
     }
@@ -92,6 +93,7 @@ class DesainController extends Controller
         $desain->dislike()->attach($user_id, ['suka' => 0]);
 
         return response()->json([
+            'title' => 'berhasil!',
             'message' => 'Berhasil Di like'
         ], 201);
     }

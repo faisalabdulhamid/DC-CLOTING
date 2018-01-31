@@ -37,6 +37,9 @@ var _http = axios.create({
     baseURL: ``
 });
 _http.interceptors.response.use((response) => {
+    if (response.status == 201) {
+        swal(response.data.title, response.data.message, "success")
+    }
     return response;
 }, function (error) {
     if (error.response.status === 422) {

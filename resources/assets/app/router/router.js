@@ -45,15 +45,16 @@ const router = new VueRouter({
 					name: 'Desain Client',
 					component: require('./../client/desain')
 				},
-				{
-					path: '/contact',
-					name: 'Contact Client',
-					component: require('./../client/contact')
-				},
+				// {
+				// 	path: '/contact',
+				// 	name: 'Contact Client',
+				// 	component: require('./../client/contact')
+				// },
 				{
 					path: '/desain-upload',
 					name: 'Upload Deasin',
-					component: require('./../client/uploadDesain')
+					component: require('./../client/uploadDesain'),
+					meta: {AuthClient: true}
 				},
 			]
 		},
