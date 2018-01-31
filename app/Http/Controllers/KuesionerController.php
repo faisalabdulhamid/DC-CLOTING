@@ -191,14 +191,14 @@ class KuesionerController extends Controller
         $validate = [];
         $kuesioner = new Kuesioner();
         foreach ($kuesioner->all() as $key => $value) {
-            $validate['jawab.'.$key] = 'required';
+            $validate['jawaban.'.$key] = 'required';
         }
         
         $this->validate($request, $validate);
         $user_id = Auth::user()->id;
 
         foreach ($kuesioner->all() as $k => $v) {
-            $v->jawaban()->attach($user_id, ['nilai' => $request->jawab[$k]]);
+            $v->jawaban()->attach($user_id, ['nilai' => $request->jawaban[$k]]);
         }
 
         return response()->json([

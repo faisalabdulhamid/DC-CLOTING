@@ -60,7 +60,7 @@
 			},
 			Simpan (event){
 				event.preventDefault()
-				this.$http.post(`/client/kuesioner/jawaban`, this.form, {
+				this.$http.post(`/client/kuesioner/jawab`, this.form, {
 					headers: {
 						Authorization: `Bearer ${this.token.access_token}`
 					}

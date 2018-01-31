@@ -83,7 +83,7 @@
 								.then(user => {
 									// console.log(user)
 									self.$session.set('user_admin', user.data)
-									self.$router.go('/admin/home')
+									self.$router.go('/admin/')
 								})
 							
 							
@@ -98,7 +98,7 @@
 		},
 		beforeCreate (){
 			if (this.$store.getters.isLoggedAdmin) {
-				window.location = 'http://dc-clothing.com/#/admin/home'
+				window.location = 'http://dc-clothing.laravel/#/admin'
 			}
 		}
 	}

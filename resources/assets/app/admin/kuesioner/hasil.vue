@@ -2,36 +2,29 @@
 	<div>
 	    <div class="page-header">
 			<div class="page-title">
-				<h3>Transaksi</h3>
+				<h3>Hasil Kuesioner</h3>
 			</div>
 	    </div>
 		<Breadcrumb :list="list"/>
 		<div class="panel panel-default">
 	      	<div class="panel-heading">
-	        	<h6 class="panel-title"><i class="icon-users"></i> Data Transaksi</h6>
-				<router-link v-if="status.status == 'marketing'" :to="'/admin/transaksi/create'" class="btn btn-success btn-sm pull-right">Tambah</router-link>
+	        	<h6 class="panel-title"><i class="icon-users"></i> Data Hasil kuesioner</h6>
 	        </div>
 	        <div class="table-responsive">
 
 	          <table class="table table-striped table-bordered">
 	            <thead>
 	              <tr>
-	                <th>Tanggal</th>
-	                <th class="actions">#</th>
+	                <th>Kuesioner</th>
+	                <th class="actions">Nilai</th>
+	                <th class="actions">Keterangan</th>
 	              </tr>
 	            </thead>
-	            <tbody>
-	              <tr v-for="item in table.data">
-	                <td>{{item.tanggal}}</td>
-	                <td>
-						<div class="btn-group btn-group-sm pull-right">
-							<button class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"> Action<span class="caret"></span> </button>
-							<ul class="dropdown-menu icons-right">
-								<li><router-link :to="'/admin/transaksi/'+item.id+'/edit'"><i class="icon-pencil3"></i> Ubah</router-link></li>
-								<li><a v-on:click.stop="hapus(item.id)"><i class="icon-user-minus"></i> Hapus</a></li>
-							</ul>
-						</div>
-	                </td>
+	            <tbody v-for="item in table">
+	              <tr>
+	                <td>{{item.soal}}</td>
+	                <th>{{ nilaiMax(item.jawaban).nilai}}</th>
+	                <th>{{ nilaiMax(item.jawaban).label}}</th>
 	              </tr>
 	            </tbody>
 	            <tfoot v-if="table.next_page_url != null || table.prev_page_url != null">
@@ -58,23 +51,19 @@
 			'Breadcrumb': require('./../../components/Breadcrumb'),
 		},
 		computed: {
-			...mapGetters({'table':'table/table'}),
+			// ...mapGetters({'table':'table/table'}),
 			name () {
 				return this.$route.name
 			},
 
 			list () {
 				return this.$route.matched
-			},
-
-			status () {
-				return this.$session.get('user_admin')
 			}
 		},
 		data () {
 			return {
-				// table: {},
-				url: '/dc/transaksi',
+				table: {},
+				url: '/dc/hasil-kuesioner',
 				token: this.$session.get('is_admin')
 			}
 		},
@@ -85,25 +74,17 @@
 				hideLoading: 'hideLoading'
 			}),
 			setTable(){
-				let self = this
-				this.showLoad()
 				this.$http.get(`${this.url}`, {
 					headers:{
 						Authorization: `Bearer ${this.token.access_token}`
 					}
 				}).then(res => {
-					self.setTableVuex(res.data).then(() => {
-						self.hideLoading()	
-					})
+					Vue.set(this.$data, 'table', res.data)
 				})
 			},
-			next(){
-				this.url = this.table.next_page_url
-				this.setTable()
-			},
-			prev(){
-				this.url = this.table.prev_page_url
-				this.setTable()
+			nilaiMax(nilai){
+				return nilai.reduce((prev, current) => (prev.nilai > current.nilai) ? prev : current)
+				// return nilai;
 			},
 			hapus(id){
 				let self = this
@@ -145,9 +126,8 @@
 	}
 </script>
 
-
 <style>
 	.actions{
-		width: 60px;
+		width: 70px;
 	}
 </style>

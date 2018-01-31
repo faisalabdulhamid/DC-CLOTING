@@ -9,7 +9,7 @@
 		<div class="panel panel-default">
 	      	<div class="panel-heading">
 	        	<h6 class="panel-title"><i class="icon-users"></i> Data produk</h6>
-				<router-link :to="'/admin/produk/create'" class="btn btn-success btn-sm pull-right">Tambah</router-link>
+				<router-link v-if="status.status == 'marketing'" :to="'/admin/produk/create'" class="btn btn-success btn-sm pull-right">Tambah</router-link>
 	        </div>
 	        <div class="table-responsive">
 
@@ -20,7 +20,7 @@
 	                <th>Kode</th>
 	                <th>Produk</th>
 	                <th>Harga</th>
-	                <th class="actions">#</th>
+	                <th v-if="status.status == 'marketing'" class="actions">#</th>
 	              </tr>
 	            </thead>
 	            <tbody>
@@ -31,7 +31,7 @@
 	                <td>{{item.kode}}</td>
 	                <td>{{item.nama}}</td>
 	                <td>{{item.harga}}</td>
-	                <td>
+	                <td v-if="status.status == 'marketing'">
 						<div class="btn-group btn-group-sm pull-right">
 							<button class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"> Action<span class="caret"></span> </button>
 							<ul class="dropdown-menu icons-right">
@@ -73,6 +73,10 @@
 
 			list () {
 				return this.$route.matched
+			},
+
+			status () {
+				return this.$session.get('user_admin')
 			}
 		},
 		data () {

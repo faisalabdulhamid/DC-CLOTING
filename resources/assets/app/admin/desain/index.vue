@@ -9,7 +9,7 @@
 		<div class="panel panel-default">
 	      	<div class="panel-heading">
 	        	<h6 class="panel-title"><i class="icon-users"></i> Data desain</h6>
-				<router-link :to="'/admin/desain/create'" class="btn btn-success btn-sm pull-right">Tambah</router-link>
+				<router-link v-if="status.status == 'marketing'" :to="'/admin/desain/create'" class="btn btn-success btn-sm pull-right">Tambah</router-link>
 	        </div>
 	        <div class="table-responsive">
 
@@ -21,7 +21,7 @@
 	                <th>Jumlah Suka</th>
 	                <th>Jumlah Tidak Suka</th>
 	                <th>Status</th>
-	                <th class="actions">#</th>
+	                <th class="actions" v-if="status.status == 'marketing'">#</th>
 	              </tr>
 	            </thead>
 	            <tbody>
@@ -33,7 +33,7 @@
 	                <td>{{item.like_count}}</td>
 	                <td>{{item.dislike_count}}</td>
 	                <td>{{(item.status)? 'Ditampilkan': 'Tidak Ditampilkan'}}</td>
-	                <td>
+	                <td v-if="status.status == 'marketing'">
 						<div class="btn-group btn-group-sm pull-right">
 							<button class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"> Action<span class="caret"></span> </button>
 							<ul class="dropdown-menu icons-right">
@@ -77,6 +77,10 @@
 
 			list () {
 				return this.$route.matched
+			},
+
+			status () {
+				return this.$session.get('user_admin')
 			}
 		},
 		data () {

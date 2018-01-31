@@ -9,7 +9,7 @@
 		<div class="panel panel-default">
 	      	<div class="panel-heading">
 	        	<h6 class="panel-title"><i class="icon-users"></i> Data pelanggan</h6>
-				<router-link :to="'/admin/pelanggan/create'" class="btn btn-success btn-sm pull-right">Tambah</router-link>
+				<router-link v-if="status.status == 'marketing'" :to="'/admin/pelanggan/create'" class="btn btn-success btn-sm pull-right">Tambah</router-link>
 	        </div>
 	        <div class="table-responsive">
 
@@ -19,7 +19,7 @@
 	                <th>Nama</th>
 	                <th>Email</th>
 	                <th>Telepon</th>
-	                <th class="actions">#</th>
+	                <th v-if="status.status == 'marketing'" class="actions">#</th>
 	              </tr>
 	            </thead>
 	            <tbody>
@@ -27,7 +27,7 @@
 	                <td>{{item.nama}}</td>
 	                <td>{{item.email}}</td>
 	                <td>{{item.no_telepon}}</td>
-	                <td>
+	                <td v-if="status.status == 'marketing'">
 						<div class="btn-group btn-group-sm pull-right">
 							<button class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"> Action<span class="caret"></span> </button>
 							<ul class="dropdown-menu icons-right">
@@ -69,6 +69,10 @@
 
 			list () {
 				return this.$route.matched
+			},
+
+			status () {
+				return this.$session.get('user_admin')
 			}
 		},
 		data () {

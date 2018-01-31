@@ -78,7 +78,7 @@ const router = new VueRouter({
 			path: '/admin',
 			name: 'Home',
 			component: FullAdmin,
-			redirect: '/admin/home',
+			redirect: '/admin/pegawai',
 			meta: {AuthAdmin: true, isAdmin: 'admin'},
 			children: [
 				{
@@ -201,6 +201,12 @@ const router = new VueRouter({
 					name: 'Edit kuesioner',
 					component: require('./../admin/kuesioner/form'),
 					props: true,
+					meta: {AuthAdmin: true, isAdmin: 'admin'}
+				},
+				{
+					path: '/admin/kuesioner/hasil',
+					name: 'Hasil kuesioner',
+					component: require('./../admin/kuesioner/hasil'),
 					meta: {AuthAdmin: true, isAdmin: 'admin'}
 				},
 			]

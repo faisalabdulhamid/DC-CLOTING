@@ -2,7 +2,7 @@
 	<div>
 		<div class="navbar navbar-inverse" role="navigation">
 			<div class="navbar-header">
-				<a class="navbar-brand">Application</a>
+				<a class="navbar-brand">DC CLOTHING</a>
 				<ul class="nav navbar-nav collapse" id="navbar-icons" v-if="!isAdmin">
 					<li><router-link :to="'/'">Home</router-link></li>
 					<li><router-link :to="'/produk'">Produk</router-link></li>
@@ -16,7 +16,7 @@
 			<ul class="nav navbar-nav navbar-right collapse" id="navbar-icons" v-if="isLoginAdmin">
 				<li class="user dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><img src="#" alt=""><span>{{ namaUser.nama }}</span><i class="caret"></i></a>
 					<ul class="dropdown-menu dropdown-menu-right icons-right">
-						<li><a><i class="icon-exit"></i> Logout</a></li>
+						<li><a v-on:click="Logout"><i class="icon-exit"></i> Logout</a></li>
 					</ul>
 				</li>
 			</ul>
