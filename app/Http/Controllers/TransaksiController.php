@@ -10,7 +10,7 @@ class TransaksiController extends Controller
 {
     public function index()
     {
-    	$data = Transaksi::all();
+    	$data = Transaksi::paginate(20);
     	return response()->json($data);
     }
 

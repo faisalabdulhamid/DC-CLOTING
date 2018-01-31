@@ -186,5 +186,19 @@ export default function configRouter() {
             ],
             meta: {Auth: true}
         },
+
+        /* User Page or Client */
+        // {
+        //     path: '/',
+        //     component: require('./../components/user-page'),
+        //     children: [
+        //         {
+        //             name: '',
+        //             path: '',
+        //             component:
+        //         },
+
+        //     ]
+        // }
     ]
 }

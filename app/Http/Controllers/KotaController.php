@@ -14,6 +14,9 @@ class KotaController extends Controller
      */
     public function index()
     {
+        if (request()->all) {
+            return response()->json(Kota::all());
+        }
         if (request()->wantsJson()) {
             $kotum = Kota::paginate(10);
             

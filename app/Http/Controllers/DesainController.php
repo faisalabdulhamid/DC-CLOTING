@@ -15,9 +15,13 @@ class DesainController extends Controller
             $q->where('suka', 1);
         }, 'dislike' => function($q){
             $q->where('suka', 0);
-        }])
-        ->where('status', 1)
-        ->get();
+        }]);
+
+        if (request()->client) {
+            $desain = $desain->where('status', 1);
+        }
+        
+        $desain=$desain->get();
 
     	return response()
     		->json($desain);
@@ -90,5 +94,31 @@ class DesainController extends Controller
         return response()->json([
             'message' => 'Berhasil Di like'
         ], 201);
+    }
+
+    public function show($id)
+    {
+        $desain = new Desain();
+        $desain = $desain->with('desainable')->withCount(['like' => function($q){
+            $q->where('suka', 1);
+        }, 'dislike' => function($q){
+            $q->where('suka', 0);
+        }])->where('id', $id)->get();
+
+        return response()->json($desain);
+    }
+
+    public function edit($id)
+    {
+        $desain = Desain::find($id);
+        $desain->status = (request()->tampil)? 1: 0;
+        $desain->save();
+
+        return response()->json([
+            'title'=>'Updated!',
+            'message' => 'Data Berhasil Di Ubah',
+            'tampil' => request()->tampil
+        ], 201);
+
     }
 }

@@ -1,11 +1,9 @@
 'use strict'
 
 require('./config/bootsrap')
-import { sync } from 'vuex-router-sync'
 import VueRouter from 'vue-router'
 import router from './router/router.js'
 import store from './store/index.js'
-const unsync = sync(store, router)
 
 Vue.use(VueRouter)
 

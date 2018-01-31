@@ -3,9 +3,14 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Pelanggan extends Model
+class Pelanggan extends User
 {
+    use HasApiTokens, Notifiable;
     protected $table = 'pelanggan';
 
     protected $hidden = [

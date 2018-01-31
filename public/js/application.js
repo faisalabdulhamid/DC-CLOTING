@@ -15891,11 +15891,9 @@ module.exports = __webpack_require__(17);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex_router_sync__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex_router_sync___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuex_router_sync__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router_router_js__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store_index_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router_router_js__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_index_js__ = __webpack_require__(13);
 
 
 __webpack_require__(18);
@@ -15903,9 +15901,7 @@ __webpack_require__(18);
 
 
 
-var unsync = Object(__WEBPACK_IMPORTED_MODULE_0_vuex_router_sync__["sync"])(__WEBPACK_IMPORTED_MODULE_3__store_index_js__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__router_router_js__["a" /* default */]);
-
-Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]);
 
 var swal = __webpack_require__(50);
 var swalPlugin = {};
@@ -15945,8 +15941,8 @@ window.onload = function () {
         components: {
             'app-vue': __webpack_require__(51)
         },
-        store: __WEBPACK_IMPORTED_MODULE_3__store_index_js__["a" /* default */],
-        router: __WEBPACK_IMPORTED_MODULE_2__router_router_js__["a" /* default */]
+        store: __WEBPACK_IMPORTED_MODULE_2__store_index_js__["a" /* default */],
+        router: __WEBPACK_IMPORTED_MODULE_1__router_router_js__["a" /* default */]
     }).$mount('#root');
 };
 
@@ -34238,87 +34234,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 42 */
-/***/ (function(module, exports) {
-
-exports.sync = function (store, router, options) {
-  var moduleName = (options || {}).moduleName || 'route'
-
-  store.registerModule(moduleName, {
-    namespaced: true,
-    state: cloneRoute(router.currentRoute),
-    mutations: {
-      'ROUTE_CHANGED': function ROUTE_CHANGED (state, transition) {
-        store.state[moduleName] = cloneRoute(transition.to, transition.from)
-      }
-    }
-  })
-
-  var isTimeTraveling = false
-  var currentPath
-
-  // sync router on store change
-  var storeUnwatch = store.watch(
-    function (state) { return state[moduleName]; },
-    function (route) {
-      var fullPath = route.fullPath;
-      if (fullPath === currentPath) {
-        return
-      }
-      if (currentPath != null) {
-        isTimeTraveling = true
-        router.push(route)
-      }
-      currentPath = fullPath
-    },
-    { sync: true }
-  )
-
-  // sync store on router navigation
-  var afterEachUnHook = router.afterEach(function (to, from) {
-    if (isTimeTraveling) {
-      isTimeTraveling = false
-      return
-    }
-    currentPath = to.fullPath
-    store.commit(moduleName + '/ROUTE_CHANGED', { to: to, from: from })
-  })
-
-  return function unsync () {
-    // On unsync, remove router hook
-    if (afterEachUnHook != null) {
-      afterEachUnHook()
-    }
-
-    // On unsync, remove store watch
-    if (storeUnwatch != null) {
-      storeUnwatch()
-    }
-
-    // On unsync, unregister Module with store
-    store.unregisterModule(moduleName)
-  }
-}
-
-function cloneRoute (to, from) {
-  var clone = {
-    name: to.name,
-    path: to.path,
-    hash: to.hash,
-    query: to.query,
-    params: to.params,
-    fullPath: to.fullPath,
-    meta: to.meta
-  }
-  if (from) {
-    clone.from = cloneRoute(from)
-  }
-  return Object.freeze(clone)
-}
-
-
-
-/***/ }),
+/* 42 */,
 /* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -34623,7 +34539,7 @@ var actions = {
 		commit(SET_USER);
 		return new Promise(function (resolve, reject) {
 			setTimeout(function () {
-				axios.get('/api/user', {
+				axios.get('/api/dc', {
 					headers: {
 						Authorization: "Bearer " + localStorage.getItem('_token_oauth')
 					}

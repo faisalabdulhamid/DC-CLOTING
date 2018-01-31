@@ -90,7 +90,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	name: "Tambah",
 	data: function data() {
 		return {
-			url: 'api/dc/kategori',
+			url: '/dc/kategori',
 			data: {
 				kategori: ''
 			}

@@ -106,7 +106,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	methods: {
 		simpan: function simpan() {
 			var self = this;
-			self.$http.post('/api/dc/desain', self.data, {
+			self.$http.post('/dc/desain', self.data, {
 				headers: {
 					Authorization: 'Bearer ' + self.token
 				}

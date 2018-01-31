@@ -50,7 +50,7 @@
 		name: 'Index',
 		data(){
 			return {
-				url: '/api/dc/hasil-kuesioner'
+				url: '/dc/hasil-kuesioner'
 			}
 		},
 		computed:{

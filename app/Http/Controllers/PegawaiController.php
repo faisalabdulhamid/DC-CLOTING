@@ -56,6 +56,7 @@ class PegawaiController extends Controller
         $pegawai = new Pegawai();
         $pegawai->nama = $request->nama;
         $pegawai->email = $request->email;
+        $pegawai->status = $request->status;
         $pegawai->password = $request->password;
         $pegawai->save();
 
@@ -103,6 +104,7 @@ class PegawaiController extends Controller
 
         $pegawai->nama = $request->nama;
         $pegawai->email = $request->email;
+        $pegawai->status = $request->status;
         if(!is_null($request->password)){
             $pegawai->password = $request->password;    
         }

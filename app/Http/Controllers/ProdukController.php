@@ -52,7 +52,7 @@ class ProdukController extends Controller
         ]);
 
         $produk = new Produk();
-        $produk->kategori_id = $request->kategori_id;
+        $produk->kategori_id = $request->kategori;
         $produk->kode = $request->kode;
         $produk->nama = $request->nama;
         $produk->harga = $request->harga;
@@ -73,6 +73,16 @@ class ProdukController extends Controller
     public function show($id)
     {
         $produk = Produk::with('kategori')->get()->find($id);
+
+        $produk = [
+            'id' => $produk->id,
+            'kode' => $produk->kode,
+            'nama' => $produk->nama,
+            'harga' => $produk->harga,
+            'gambar' => $produk->gambar,
+            'kategori' => $produk->kategori_id,
+        ];
+
         return response()->json($produk);
     }
 
@@ -106,7 +116,7 @@ class ProdukController extends Controller
         ]);
 
         $produk = Produk::find($id);
-        $produk->kategori_id = $request->kategori_id;
+        $produk->kategori_id = $request->kategori;
         $produk->kode = $request->kode;
         $produk->nama = $request->nama;
         $produk->harga = $request->harga;

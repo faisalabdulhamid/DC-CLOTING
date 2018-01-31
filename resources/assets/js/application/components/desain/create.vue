@@ -49,7 +49,7 @@
 		methods:{
 			simpan(){
 				let self = this
-				self.$http.post('/api/dc/desain', self.data, {
+				self.$http.post('/dc/desain', self.data, {
 					headers: {
 						Authorization: `Bearer ${self.token}`
 					}

@@ -14,6 +14,9 @@ class KategoriController extends Controller
      */
     public function index()
     {
+        if (request()->all) {
+            return response()->json(Kategori::all());
+        }
         if (request()->wantsJson()) {
             $kategori = Kategori::paginate(10);
             

@@ -39,6 +39,9 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapClientRoutes();
+        $this->mapDcRoutes();
+
         //
     }
 
@@ -69,5 +72,21 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+
+    public function mapClientRoutes()
+    {
+        Route::prefix('client')
+             ->middleware('api')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/client.php'));
+    }
+
+    public function mapDcRoutes()
+    {
+        Route::prefix('dc')
+             ->middleware('api')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/dc.php'));
     }
 }

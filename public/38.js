@@ -154,7 +154,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	name: 'Index',
 	data: function data() {
 		return {
-			url: '/api/dc/hasil-kuesioner'
+			url: '/dc/hasil-kuesioner'
 		};
 	},
 

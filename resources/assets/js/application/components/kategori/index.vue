@@ -58,7 +58,7 @@
 		name: 'Index',
 		data(){
 			return {
-				url: '/api/dc/kategori'
+				url: '/dc/kategori'
 			}
 		},
 		computed:{

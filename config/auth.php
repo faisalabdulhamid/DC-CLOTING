@@ -77,7 +77,7 @@ return [
 
         'client' => [
             'driver' => 'eloquent',
-            'table' => App\Entities\Pelanggan::class,
+            'model' => App\Entities\Pelanggan::class,
         ],
     ],
 

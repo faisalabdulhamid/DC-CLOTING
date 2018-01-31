@@ -5,6 +5,9 @@ import router from './router/router'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+import VueSession from 'vue-session'
+Vue.use(VueSession)
+
 const swal = require('sweetalert2')
 const swalPlugin = {}
 swalPlugin.install = function(Vue){
@@ -12,7 +15,7 @@ swalPlugin.install = function(Vue){
 }
 Vue.use(swalPlugin)
 var _http = axios.create({
-    baseURL: `/api`
+    baseURL: `/client`
 });
 _http.interceptors.response.use((response) => {
     return response;

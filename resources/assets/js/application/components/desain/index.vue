@@ -33,7 +33,7 @@
 		name: 'Index',
 		data(){
 			return {
-				url: '/api/dc/desain'
+				url: '/dc/desain'
 			}
 		},
 		computed:{

@@ -26,5 +26,8 @@ export default function routes() {
 		{ name: 'not-found', path: '*', component: function (resolve) {
 			require(['./../components/user-page/not-found.vue'], resolve)
 		}},
+		{ name: 'login', path: '/login', component: function (resolve) {
+			require(['./../components/user-page/login.vue'], resolve)
+		}},
 	]
 }
