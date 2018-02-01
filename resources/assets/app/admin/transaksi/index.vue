@@ -17,12 +17,16 @@
 	            <thead>
 	              <tr>
 	                <th>Tanggal</th>
+	                <th>Pelanggan</th>
+	                <th>Total Bayar</th>
 	                <th class="actions">#</th>
 	              </tr>
 	            </thead>
 	            <tbody>
 	              <tr v-for="item in table.data">
 	                <td>{{item.tanggal}}</td>
+	                <td>{{item.pelanggan.nama}}</td>
+	                <td>{{ reduce(item.produk) }}</td>
 	                <td>
 						<div class="btn-group btn-group-sm pull-right">
 							<button class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"> Action<span class="caret"></span> </button>
@@ -52,6 +56,7 @@
 
 <script>
 	import {mapActions, mapGetters} from 'vuex'
+
 	export default{
 		name: 'Index',
 		components: {
@@ -84,6 +89,11 @@
 				showLoad: 'showLoading',
 				hideLoading: 'hideLoading'
 			}),
+			reduce (produk){
+				return _.reduce(produk, function(sum, val){
+					return sum + val['harga'];
+				}, 0)
+			},
 			setTable(){
 				let self = this
 				this.showLoad()

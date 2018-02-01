@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Transaksi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,7 @@ class TransaksiController extends Controller
 {
     public function index()
     {
-    	$data = Transaksi::paginate(20);
+    	$data = Transaksi::with('pelanggan')->with('produk')->paginate(20);
     	return response()->json($data);
     }
 
@@ -18,19 +19,20 @@ class TransaksiController extends Controller
     {
     	$this->validate($request, [
     		'pelanggan' => 'required',
-    		'tanggal' => 'required',
-    		'*.*.produk_id' => 'required',
+    		// 'tanggal' => 'required',
+    		'*.*.produk' => 'required',
             '*.*.qty' => 'required',
     		'*.*.sub_total' => 'required'
     	]);
-
-        DB::transaction(function(){
+        // return response()->json($request->detail);
+        DB::transaction(function()use($request){
             $transaksi = Transaksi::create([
                 'pelanggan_id' => $request->pelanggan,
-                'tanggal' => $request->tanggal
+                'tanggal' => Carbon::now(),
+                // 'pega'
             ]);
-            foreach ($request->pesanan as $key => $val) {
-                $transaksi->produk->attach($val['produk_id'], ['qty' => $val['qty'], 'sub_total' => $val['sub_total']]);
+            foreach ($request->detail as $key => $val) {
+                $transaksi->produk()->attach($val['produk'], ['qty' => $val['qty'], 'sub_total' => $val['sub_total']]);
             }
         });
 

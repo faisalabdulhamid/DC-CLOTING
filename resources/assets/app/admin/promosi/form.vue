@@ -27,13 +27,15 @@
 					<div class="form-group">
 						<label for="nama" class="control-label col-md-3">Mulai Promosi</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" id="nama" v-model="form.mulai_promosi">
+							<!-- <input type="text" class="form-control" id="nama" v-model="form.mulai_promosi"> -->
+							<date-picker :date="startTime"></date-picker>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="nama" class="control-label col-md-3">Akhir Promosi</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" id="nama" v-model="form.akhir_promosi">
+							<date-picker :date="endTime"></date-picker>
+							<!-- <input type="text" class="form-control" id="nama" v-model="form.akhir_promosi"> -->
 						</div>
 					</div>
 
@@ -54,10 +56,13 @@
 </template>
 
 <script>
+	import myDatepicker from 'vue-datepicker'
+
 	export default{
 		name: 'Form',
 		components: {
 			'Breadcrumb': require('./../../components/Breadcrumb'),
+			'date-picker': myDatepicker
 		},
 		computed: {
 			name () {
@@ -74,7 +79,13 @@
 		props: ['id'],
 		data () {
 			return {
-				form: {}
+				form: {},
+				startTime: {
+					time: ''
+				},
+				endTime: {
+					time: ''
+				}
 			}
 		},
 		methods: {
@@ -99,6 +110,14 @@
 					})
 				}
 			}
+		},
+		watch: {
+			'endTime.time': function () {
+				this.form.awal_promosi = this.endTime.time
+			},
+			'startTime.time': function () {
+				this.form.akhir_promosi = this.startTime.time
+			},
 		},
 		created () {
 			if (typeof this.id !== 'undefined') {

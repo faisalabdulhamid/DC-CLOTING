@@ -98,7 +98,7 @@
 		},
 		beforeCreate (){
 			if (this.$store.getters.isLoggedAdmin) {
-				window.location = 'http://dc-clothing.com/#/admin'
+				window.location = 'http://dc-clothing.laravel/#/admin'
 			}
 		}
 	}

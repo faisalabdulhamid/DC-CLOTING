@@ -27,25 +27,25 @@
 								<th>Produk</th>
 								<th>Harga</th>
 								<th>Qty</th>
-								<th>SubTotal</th>
+								<th>sub total</th>
 								<th>Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="(item, idx) in cart">
+							<tr v-for="(item, idx) in form.detail">
 								<td>
-									<select class="form-control">
-										<option v-for="p in produk" :value="p.id">{{p.kode+' - '+p.nama}}</option>
+									<select class="form-control" v-model="item.produk">
+										<option v-for="p in produk" :value="p.id" v-on:click="handleProduk(idx, p.harga), _total()">{{p.kode+' - '+p.nama}}</option>
 									</select>
 								</td>
 								<td>
-									<input type="text" class="form-control" readonly="">
+									<input type="text" class="form-control" readonly="" v-model="item.harga">
 								</td>
 								<td>
-									<input type="number" class="form-control">
+									<input type="number" class="form-control" v-model="item.qty" v-on:change="_total()">
 								</td>
 								<td>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" readonly="" :value="item.sub_total = item.qty * item.harga">
 								</td>
 								<td>
 									<a v-on:click="remove(idx)" class="btn btn-default btn-sm"><i class="fa fa-times"></i></a>
@@ -56,7 +56,7 @@
 						<tfoot>
 							<tr>
 								<th colspan="3" class="text-right">Total</th>
-								<td><input type="text" class="form-control" readonly=""></td>
+								<td><input type="text" class="form-control" readonly="" :value="form.total_bayar"></td>
 								<td></td>
 							</tr>
 						</tfoot>
@@ -91,16 +91,29 @@
 		data () {
 			return {
 				form: {
-					detail: []
+					// produk: '',
+					// total_bayar: 0,
+					detail: [
+						{produk: '', harga: 0, sub_total: 0, qty: 1}
+					]
 				},
 				pelanggan: [],
 				produk: [],
-				cart: [
-					{'id': ''}
-				]
 			}
 		},
 		methods: {
+			handleProduk(idx, harga){
+				console.log({index:idx})
+				console.log({harga:harga})
+				this.form.detail[idx].harga = harga
+			},
+			_total(){
+				let tot = 0
+				this.form.detail.forEach((val, key) => {
+					tot += val.qty * val.harga
+				})
+				this.form.total_bayar = tot
+			},
 			getPelanggan (){
 				this.$http.get(`/dc/pelanggan?all=true`, {
 					headers:{
@@ -122,12 +135,12 @@
 					})	
 			},
 			remove(idx){
-				if (this.cart.length > 1) {
-					this.cart.splice(idx, 1)
+				if (this.form.detail.length > 1) {
+					this.form.detail.splice(idx, 1)
 				}
 			},
 			add (){
-				this.cart.push({id: '', detail: []})
+				this.form.detail.push({produk: '', harga: '', sub_total: 0, qty: 1})
 			},
 			handleSave (){
 				if (typeof this.id !== 'undefined') {
@@ -164,7 +177,7 @@
 						Vue.set(this.$data, 'form', res.data)
 					})
 			}
-		}
+		},
 	}
 </script>
 
