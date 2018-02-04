@@ -15,7 +15,7 @@ class Transaksi extends Model
     public function produk()
     {
     	return $this->belongsTomany(Produk::class, 'transaksi_detail', 'transaksi_id', 'produk_id')
-    	->withPivot('qty', 'sub_total');
+    	   ->withPivot('qty', 'sub_total');
     }
 
     public function pelanggan()

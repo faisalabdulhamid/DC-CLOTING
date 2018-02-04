@@ -44,4 +44,9 @@ class Pelanggan extends User
     {
         return $this->morphMany(Desain::class, 'desainable');
     }
+
+    public function kota()
+    {
+        return $this->belongsTo(Kota::class);
+    }
 }

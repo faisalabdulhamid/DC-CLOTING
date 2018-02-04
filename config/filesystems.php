@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'desain'),
 
     /*
     |--------------------------------------------------------------------------
@@ -53,6 +53,11 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
+        ],
+
+        'desain' => [
+            'driver' => 'local',
+            'root'   => public_path().'/img/desain',
         ],
 
         's3' => [

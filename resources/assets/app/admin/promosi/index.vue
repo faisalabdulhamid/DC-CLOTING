@@ -2,7 +2,7 @@
 	<div>
 	    <div class="page-header">
 			<div class="page-title">
-				<h3>promosi</h3>
+				<h3>Promosi</h3>
 			</div>
 	    </div>
 		<Breadcrumb :list="list"/>
@@ -10,6 +10,19 @@
 	      	<div class="panel-heading">
 	        	<h6 class="panel-title"><i class="icon-users"></i> Data promosi</h6>
 				<router-link v-if="status.status == 'marketing'" :to="'/admin/promosi/create'" class="btn btn-success btn-sm pull-right">Tambah</router-link>
+	        </div>
+	        <div class="panel-body">
+	        	<div class="form-group form-group-sm">
+	        		<label for="" class="control-label col-md-3">Cari</label>
+	        		<div class="col-md-9">
+	        			<div class="input-group">
+							<input type="text" class="form-control" v-model="form_cari">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button" @click="cari">Cari</button>
+							</span>
+						</div><!-- /input-group -->
+	        		</div>
+	        	</div>
 	        </div>
 	        <div class="table-responsive">
 
@@ -20,7 +33,7 @@
 	                <th>Isi Promosi</th>
 	                <th>Mulai Promosi</th>
 	                <th>Akhir Promosi</th>
-	                <th v-if="status.status == 'marketing'" class="actions">#</th>
+	                <th v-if="status.status == 'marketing'" class="actions">Aksi</th>
 	              </tr>
 	            </thead>
 	            <tbody>
@@ -81,7 +94,8 @@
 			return {
 				// table: {},
 				url: '/dc/promosi',
-				token: this.$session.get('is_admin')
+				token: this.$session.get('is_admin'),
+				form_cari: ''
 			}
 		},
 		methods:{
@@ -101,12 +115,6 @@
 					self.setTableVuex(res.data).then(() => {
 						self.hideLoading()	
 					})
-				}).catch(error => {
-					if (error.status === 401) {
-						setTimeout(function() {
-							this.setTable()
-						}, 1000);
-					}
 				})
 			},
 			next(){
@@ -149,7 +157,20 @@
 						})
 					}
 				})
-			}
+			},
+			cari(){
+				let self = this
+				this.showLoad()
+				this.$http.get(`${this.url}?cari=${this.form_cari}`, {
+					headers:{
+						Authorization: `Bearer ${this.token.access_token}`
+					}
+				}).then(res => {
+					self.setTableVuex(res.data).then(() => {
+						self.hideLoading()	
+					})
+				})
+			},
 		},
 		beforeMount(){
 			this.setTable()

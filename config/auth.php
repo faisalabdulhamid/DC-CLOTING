@@ -47,7 +47,7 @@ return [
         ],
 
         'client' => [
-            'driver' => 'passport',
+            'driver' => 'token',
             'provider' => 'client',
         ],
     ],

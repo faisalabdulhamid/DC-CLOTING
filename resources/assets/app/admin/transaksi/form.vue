@@ -103,8 +103,6 @@
 		},
 		methods: {
 			handleProduk(idx, harga){
-				console.log({index:idx})
-				console.log({harga:harga})
 				this.form.detail[idx].harga = harga
 			},
 			_total(){
@@ -175,6 +173,7 @@
 				})
 					.then(res => {
 						Vue.set(this.$data, 'form', res.data)
+						this._total()
 					})
 			}
 		},

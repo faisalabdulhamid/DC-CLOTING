@@ -1,15 +1,22 @@
 import * as axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000';
+// const BASE_URL = '/';
 
 function upload(formData) {
-    const url = `${BASE_URL}/photos/upload`;
-    return axios.post(url, formData)
+    const url = `/client/desain/upload`;
+    return axios.post(url, formData, {
+    	headers: {
+    		Authorization: `Bearer ${localStorage.getItem('login_user')}`
+    	}
+    })
         // get data
-        .then(x => x.data)
+        // .then(x => x.data)
+        .then(x => Object.assign({}, {url: x.data}))
         // add url field
-        .then(x => x.map(img => Object.assign({},
-            img, { url: `${BASE_URL}/images/${img.id}` })));
+        // .then(x => x.map(
+        // 		img => Object.assign({}, img, { url: `${BASE_URL}/images/${img.id}` })
+        // 	)
+        // );
 }
 
 export { upload }

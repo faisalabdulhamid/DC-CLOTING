@@ -19,15 +19,17 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="email" class="control-label col-md-3">Email</label>
+						<label for="no_telepon" class="control-label col-md-3">No Telepon</label>
 						<div class="col-md-9">
-							<input type="email" class="form-control" id="email" v-model="form.email">
+							<input type="text" class="form-control" id="no_telepon" v-model="form.no_telepon">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="password" class="control-label col-md-3">Password</label>
+						<label for="provinsi" class="control-label col-md-3">Provinsi</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" id="password" v-model="form.password">
+							<select class="form-control" id="provinsi" v-model="form.provinsi">
+								<option v-for="item in provinsi" :value="item.id">{{item.provinsi}}</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group">
@@ -67,7 +69,8 @@
 		data () {
 			return {
 				form: {},
-				kota: []
+				kota: [],
+				provinsi: []
 			}
 		},
 		methods: {
@@ -101,10 +104,21 @@
 					.then(res => {
 						Vue.set(this.$data, 'kota', res.data)
 					})
+			},
+			getProvinsi () {
+				this.$http.get(`/dc/provinsi?all=true`, {
+					headers: {
+						Authorization: `Bearer ${this.login_admin.access_token}`
+					}
+				})
+					.then(res => {
+						Vue.set(this.$data, 'provinsi', res.data)
+					})
 			}
 		},
 		created () {
 			this.getKota()
+			this.getProvinsi()
 			if (typeof this.id !== 'undefined') {
 				this.$http.get(`/dc/pelanggan/${this.id}`, {
 					headers: {

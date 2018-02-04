@@ -36,9 +36,6 @@
 <script>
 	export default{
 		name: 'Kusioner',
-		component: {
-			'KusionerList': require('./kuesioner-list')
-		},
 		data (){
 			return {
 				list: [],
@@ -52,7 +49,7 @@
 			getData (){
 				this.$http.get(`/client/kuesioner`, {
 					headers: {
-						Authorization: `Bearer ${this.token.access_token}`
+						Authorization: `Bearer ${this.token.api_token}`
 					}
 				}).then(res => {
 					Vue.set(this.$data, 'list', res.data)
@@ -62,7 +59,7 @@
 				event.preventDefault()
 				this.$http.post(`/client/kuesioner/jawab`, this.form, {
 					headers: {
-						Authorization: `Bearer ${this.token.access_token}`
+						Authorization: `Bearer ${this.token.api_token}`
 					}
 				}).then(res => {
 					console.log(res.data)

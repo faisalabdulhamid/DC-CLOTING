@@ -42,8 +42,8 @@
 </template>
 
 <script>
-	import { upload } from './service/file-upload.fake.service.js'; // fake service
-	// import { upload } from './service/file-upload.service.js';   // real service
+	// import { upload } from './service/file-upload.fake.service.js'; // fake service
+	import { upload } from './service/file-upload.service.js';   // real service
 	import { wait } from './service/utils.js';
 
 	const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
@@ -87,10 +87,13 @@
 				upload(formData)
 					.then(wait(1500)) // DEV ONLY: wait for 1.5s 
 					.then(x => {
+						console.log({sucess: x})
 						this.uploadedFiles = [].concat(x);
 						this.currentStatus = STATUS_SUCCESS;
+						console.log({uploadedFiles: this.uploadedFiles})
 					})
 					.catch(err => {
+						console.log({error:err})
 						this.uploadError = err.response;
 						this.currentStatus = STATUS_FAILED;
 					});

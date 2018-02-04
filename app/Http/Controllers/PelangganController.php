@@ -14,19 +14,24 @@ class PelangganController extends Controller
      */
     public function index()
     {
+        if (request()->cari) {
+            $pelanggan = Pelanggan::with('kota.provinsi')
+                ->where('nama', 'LIKE', '%'.request()->cari.'%')
+                ->orWhere('no_telepon', 'LIKE', '%'.request()->cari.'%')
+                ->paginate(10);
+
+            return response()->json($pelanggan);
+        }
+
         if (request()->all) {
             return response()->json(Pelanggan::all());
         }
         if (request()->wantsJson()) {
-            $pelanggan = Pelanggan::paginate(10);
+            $pelanggan = Pelanggan::with('kota.provinsi')->paginate(10);
             
             return response()
                 ->json($pelanggan);
         }
-        $title = 'Pelanggan';
-        $script = asset('js/pelanggan.js');        
-
-        return view('index', compact('script', 'title'));
     }
 
     /**
@@ -51,13 +56,14 @@ class PelangganController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'no_telepon' => 'required|numeric|unique:pelanggan|min:12',
-            'kota_id' => 'required',
+            'kota' => 'required',
+            'provinsi' => 'required',
         ]);
 
         $pelanggan = new Pelanggan();
         $pelanggan->nama = $request->nama;
         $pelanggan->no_telepon = $request->no_telepon;
-        $pelanggan->kota_id = $request->kota_id;
+        $pelanggan->kota_id = $request->kota;
         $pelanggan->save();
 
         return response()->json([
@@ -100,12 +106,13 @@ class PelangganController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'no_telepon' => 'required|numeric|min:12',
-            'kota_id' => 'required',
+            'kota' => 'required',
+            'provinsi' => 'required',
         ]);
 
         $pelanggan->nama = $request->nama;
         $pelanggan->no_telepon = $request->no_telepon;
-        $pelanggan->kota_id = $request->kota_id;
+        $pelanggan->kota_id = $request->kota;
         $pelanggan->save();
 
         return response()->json([

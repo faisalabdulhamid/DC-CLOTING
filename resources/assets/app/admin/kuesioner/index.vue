@@ -2,7 +2,7 @@
 	<div>
 	    <div class="page-header">
 			<div class="page-title">
-				<h3>kuesioner</h3>
+				<h3>Kuesioner</h3>
 			</div>
 	    </div>
 		<Breadcrumb :list="list"/>
@@ -17,7 +17,7 @@
 	            <thead>
 	              <tr>
 	                <th>kuesioner</th>
-	                <th v-if="status.status == 'marketing'" class="actions">#</th>
+	                <th v-if="status.status == 'marketing'" class="actions">Aksi</th>
 	              </tr>
 	            </thead>
 	            <tbody v-for="item in table.data">

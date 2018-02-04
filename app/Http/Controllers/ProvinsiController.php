@@ -14,6 +14,11 @@ class ProvinsiController extends Controller
      */
     public function index()
     {
+        if (request()->all) {
+            $provinsi = Provinsi::all();
+            return response()
+                ->json($provinsi);
+        }
         if (request()->wantsJson()) {
             $provinsi = Provinsi::paginate(10);
             return response()

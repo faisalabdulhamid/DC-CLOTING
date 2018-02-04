@@ -87,7 +87,7 @@
 								})
 							
 							
-							// window.location = 'http://dc-clothing.laravel/#/admin/home'
+							// window.location = 'http://dc-clothing.com/#/admin/home'
 
 						}, 500);
 					})
@@ -98,7 +98,7 @@
 		},
 		beforeCreate (){
 			if (this.$store.getters.isLoggedAdmin) {
-				window.location = 'http://dc-clothing.laravel/#/admin'
+				window.location = 'http://dc-clothing.com/#/admin'
 			}
 		}
 	}

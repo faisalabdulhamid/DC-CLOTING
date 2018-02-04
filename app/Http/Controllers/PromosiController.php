@@ -14,12 +14,21 @@ class PromosiController extends Controller
      */
     public function index()
     {
+        if (request()->cari) {
+            $promosi = Promosi::where('subjek', 'LIKE', '%'.request()->cari.'%')
+                ->orWhere('isi_promosi', 'LIKE', '%'.request()->cari.'%')
+                ->tampil()->paginate(10);
+            
+            return response()
+                ->json($promosi);
+        }
         if (request()->all) {
             $promosi = Promosi::tampil()->get();
             
             return response()
                 ->json($promosi);
         }
+
         if (request()->wantsJson()) {
             $promosi = Promosi::tampil()->paginate(10);
             

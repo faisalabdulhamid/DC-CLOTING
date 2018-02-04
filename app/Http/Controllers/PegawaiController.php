@@ -14,18 +14,20 @@ class PegawaiController extends Controller
      */
     public function index()
     {
+        if (request()->cari) {
+            $pegawai = Pegawai::where('nama', 'LIKE', '%'.request()->cari.'%')->where('status', '!=', 'direktur')
+                ->paginate(10);
+
+            return response()
+                ->json($pegawai);
+        }
+
         if (request()->wantsJson()) {
-            $pegawai = Pegawai::paginate(10);
+            $pegawai = Pegawai::where('status', '!=', 'direktur')->paginate(10);
             
             return response()
                 ->json($pegawai);
         }
-        $title = 'Pegawai';
-        // $class_body = 'sidebar-wide';
-        
-        $script = asset('js/pegawai.js');        
-
-        return view('index', compact('script', 'title', 'class_body'));
     }
 
     /**

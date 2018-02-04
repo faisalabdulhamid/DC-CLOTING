@@ -39,7 +39,7 @@ const actions = {
 		commit(LOGIN); // show spinner
 		return new Promise((resolve) => {
 			setTimeout(() => {
-				localStorage.setItem("login_user", payload.access_token)
+				localStorage.setItem("login_user", payload.api_token)
 				commit(LOGIN_SUCCESS)
 				resolve()
 			}, 1000)

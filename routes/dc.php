@@ -43,7 +43,7 @@ Route::resource('desain', 'DesainController', [
 ])->middleware('auth:api');
 
 Route::resource('transaksi', 'TransaksiController', [
-	'except' => ['create', 'edit', 'update', 'destroy']
+	'except' => ['create', 'edit', 'destroy']
 ])->middleware('auth:api');
 
 Route::middleware('auth:api')->prefix('select')->group(function(){
@@ -60,3 +60,5 @@ Route::middleware('auth:api')->prefix('select')->group(function(){
 		return response()->json($kategori);
 	});
 });
+
+Route::post('desain/upload', 'DesainController@uploadClient')->middleware('auth:api');

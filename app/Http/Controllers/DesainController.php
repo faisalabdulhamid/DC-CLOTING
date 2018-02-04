@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\Desain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DesainController extends Controller
 {
@@ -122,5 +123,29 @@ class DesainController extends Controller
             'tampil' => request()->tampil
         ], 201);
 
+    }
+
+    public function uploadClient(Request $request)
+    {
+        $this->validate($request, [
+            // 'title' => 'nullable|max:100',
+            'photos' => 'required|file|max:2000', // max 2MB
+        ]);
+
+        $uploadedFile = $request->file('photos');
+        
+
+        // return $uploadedFile->getClientOriginalName();
+        $filename = $uploadedFile->getClientOriginalName();
+        if ($uploadedFile->isValid()) {
+            $path = $uploadedFile->store('');
+            // Storage::disk('desain')->put($filename);
+
+            $user = Auth::user();
+
+            $desain = $user->desains()->create(['gambar' => url('/img/desain/'.$path) ]);
+
+            return url('/img/desain/'.$path);
+        }
     }
 }

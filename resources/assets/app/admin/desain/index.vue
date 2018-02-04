@@ -26,7 +26,8 @@
 	            </thead>
 	            <tbody>
 	              <tr v-for="item in table">
-	                <td>
+	              	
+	                <td v-viewer>
 	                	<img :src="item.gambar" alt="Gambar" class="img-thumbnail" width="50px">
 	                </td>
 	                <td>{{item.desainable.nama}}</td>
@@ -64,6 +65,10 @@
 
 <script>
 	import {mapActions, mapGetters} from 'vuex'
+	import Vue from 'vue'
+	import Viewer from 'v-viewer'
+	Vue.use(Viewer)
+
 	export default{
 		name: 'Index',
 		components: {
