@@ -10,6 +10,17 @@
 	      	<div class="panel-heading">
 	        	<h6 class="panel-title"><i class="icon-users"></i> Data Hasil kuesioner</h6>
 	        </div>
+	      	<div class="panel-body">
+	        	<div class="form-group">
+	        		<label class="col-md-3 control-label">Kota</label>
+	        		<div class="col-md-9">
+	        			<select class="form-control" v-on:change="kuesionerKota($event)">
+	        				<option value="">Semua Kota</option>
+	        				<option v-for="item in kota" :value="item.id">{{item.kota}}</option>
+	        			</select>
+	        		</div>
+	        	</div>
+	        </div>
 	        <div class="table-responsive">
 
 	          <table class="table table-striped table-bordered">
@@ -64,7 +75,9 @@
 			return {
 				table: {},
 				url: '/dc/hasil-kuesioner',
-				token: this.$session.get('is_admin')
+				token: this.$session.get('is_admin'),
+				kota: [],
+				kota_id: ''
 			}
 		},
 		methods:{
@@ -73,6 +86,26 @@
 				showLoad: 'showLoading',
 				hideLoading: 'hideLoading'
 			}),
+			getKota () {
+				this.$http.get('/dc/kota?all=true', {
+					headers: {
+						Authorization: `Bearer ${this.token.access_token}`
+					}
+				})
+					.then(res => {
+						Vue.set(this.$data, 'kota', res.data)
+					})
+			},
+			kuesionerKota(event) {
+				// console.log(event.target.value)
+				this.$http.get(`${this.url}?kota=${event.target.value}`, {
+					headers:{
+						Authorization: `Bearer ${this.token.access_token}`
+					}
+				}).then(res => {
+					Vue.set(this.$data, 'table', res.data)
+				})
+			},
 			setTable(){
 				this.$http.get(`${this.url}`, {
 					headers:{
@@ -121,6 +154,7 @@
 			}
 		},
 		beforeMount(){
+			this.getKota()
 			this.setTable()
 		},
 	}

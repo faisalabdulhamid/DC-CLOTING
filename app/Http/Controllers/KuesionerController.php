@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Kuesioner;
+use App\Entities\Pelanggan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -116,10 +117,15 @@ class KuesionerController extends Controller
     {
         $kuesioner = new Kuesioner();
         $kuesioner = $kuesioner
-                        ->has('jawaban')
-                        ->get();
+                        ->has('jawaban');
+        if (request()->kota) {
+            $kota = request()->kota;
+            $kuesioner = $kuesioner->whereHas('jawaban', function($q) use($kota){
+                $q->where('kota_id', $kota);
+            });
+        }
         $data = [];
-        foreach ($kuesioner as $key => $k) {
+        foreach ($kuesioner->get() as $key => $k) {
             // (totalResponden / jumlahResponden) * 100
             $row = [];
             $row['soal'] = $k->soal;
@@ -196,13 +202,23 @@ class KuesionerController extends Controller
         
         $this->validate($request, $validate);
         $user_id = Auth::user()->id;
+        $kue = Pelanggan::find($user_id);
+        if ($kue->jawaban->isEmpty()) {
+            
+            foreach ($kuesioner->all() as $k => $v) {
+                $v->jawaban()->attach($user_id, ['nilai' => $request->jawaban[$k]]);
+            }
 
-        foreach ($kuesioner->all() as $k => $v) {
-            $v->jawaban()->attach($user_id, ['nilai' => $request->jawaban[$k]]);
+            return response()->json([
+                'title'=> '',
+                'message'=> 'Data Berhasil Ditambahkan',
+                'kuesioner' => $kue->jawaban
+            ], 201);
+        }else{
+            return response()->json([
+                'title'=> '',
+                'message'=> 'Anda Telah mengisi Kuesioner'
+            ], 302);
         }
-
-        return response()->json([
-            'message'=> 'Data Berhasil Ditambahkan'
-        ], 201);
     }
 }

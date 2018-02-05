@@ -51,24 +51,32 @@
 		},
 		methods: {
 			handleLike (id) {
-				this.$http.put(`/client/desain/like/${id}`, '', {
-					headers: {
-						Authorization: `Bearer ${this.login_client.access_token}`
-					}
-				})
-					.then(res => {
-						this.getData()
+				if (typeof this.login_client == 'undefined') {
+					this.$router.push('/login/client')
+				}else{
+					this.$http.put(`/client/desain/like/${id}`, '', {
+						headers: {
+							Authorization: `Bearer ${this.login_client.api_token}`
+						}
 					})
+						.then(res => {
+							this.getData()
+						})
+				}
 			},
 			handleDislike (id) {
-				this.$http.put(`/client/desain/dislike/${id}`, '', {
-					headers: {
-						Authorization: `Bearer ${this.login_client.access_token}`
-					}
-				})
-					.then(res => {
-						this.getData()
+				if (typeof this.login_client == 'undefined') {
+					this.$router.push('/login/client')
+				}else{
+					this.$http.put(`/client/desain/dislike/${id}`, '', {
+						headers: {
+							Authorization: `Bearer ${this.login_client.api_token}`
+						}
 					})
+						.then(res => {
+							this.getData()
+						})
+				}
 			},
 			getData () {
 				this.$http.get(`/client/desain?client=true`)
