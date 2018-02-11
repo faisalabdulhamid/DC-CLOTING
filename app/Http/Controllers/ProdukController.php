@@ -33,6 +33,18 @@ class ProdukController extends Controller
         }
     }
 
+    public function kategori($id)
+    {
+        if (request()->all) {
+            $produk = Produk::whereHas('kategori', function ($query) use($id)
+            {
+                $query->where('id', $id);
+            })->get();
+            
+            return response()->json($produk);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

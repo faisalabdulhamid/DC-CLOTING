@@ -42,7 +42,7 @@
 	            				:soal="item.soal"
 								:height="150"
 	            				>
-	            				{{ item.jawaban }}		
+	            				{{ item.jawaban }}
 	            			</BarChart>
 	            		</td>
 	            	</tr>

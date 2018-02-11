@@ -3,120 +3,69 @@
         <aside class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row content-item">
 		      <!--UPLOAD-->
-		      <form enctype="multipart/form-data" novalidate v-if="isInitial || isSaving">
+		      <form enctype="multipart/form-data" v-on:submit.prevent="save">
 		        <h1>Upload images</h1>
-		        <div class="dropbox">
-		          <input type="file" multiple :name="uploadFieldName" :disabled="isSaving" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
-		            accept="image/*" class="input-file">
-		            <p v-if="isInitial">
-		              Drag your file(s) here to begin<br> or click to browse
-		            </p>
-		            <p v-if="isSaving">
-		              Uploading {{ fileCount }} files...
-		            </p>
+		        <div class="form-group">
+		        	<label for="" class="control-label col-md-3">Gambar</label>
+		        	<div class="col-md-9">
+		        		<input type="file"
+		        			multiple
+							name="gambar" 
+							id="gambar" 
+							accept="image/*">
+		        	</div>
 		        </div>
-		      </form>
-		      <!--SUCCESS-->
-		      <div v-if="isSuccess">
-		        <h2>Uploaded {{ uploadedFiles.length }} file(s) successfully.</h2>
-		        <p>
-		          <a href="javascript:void(0)" @click="reset()">Upload again</a>
-		        </p>
-		        <ul class="list-unstyled">
-		          <li v-for="item in uploadedFiles">
-		            <img :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
-		          </li>
-		        </ul>
-		      </div>
-		      <!--FAILED-->
-		      <div v-if="isFailed">
-		        <h2>Uploaded failed.</h2>
-		        <p>
-		          <a href="javascript:void(0)" @click="reset()">Try again</a>
-		        </p>
-		        <pre>{{ uploadError }}</pre>
-		      </div>
+		        <button class="btn btn-default pull-right">Simpan</button>
+		    	</form>
+		    	
+		    	
+		    	<img v-if="Object.keys(response).length" :src="response.url" width="100px">
             </div>
         </aside>
     </section>
 </template>
 
 <script>
-	// import { upload } from './service/file-upload.fake.service.js'; // fake service
-	import { upload } from './service/file-upload.service.js';   // real service
-	import { wait } from './service/utils.js';
-
-	const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
 	export default {
 		name: 'Upload-Desain',
-		data(){
+		data (){
 			return {
-		        uploadedFiles: [],
-		        uploadError: null,
-		        currentStatus: null,
-		        uploadFieldName: 'photos'
-			}
-		},
-		computed: {
-			isInitial() {
-				return this.currentStatus === STATUS_INITIAL;
-			},
-			isSaving() {
-				return this.currentStatus === STATUS_SAVING;
-			},
-			isSuccess() {
-				return this.currentStatus === STATUS_SUCCESS;
-			},
-			isFailed() {
-				return this.currentStatus === STATUS_FAILED;
+				token: this.$session.get('is_client'),
+				response: {}
 			}
 		},
 		methods: {
-			reset() {
-				// reset form to initial state
-				this.currentStatus = STATUS_INITIAL;
-				this.uploadedFiles = [];
-				this.uploadError = null;
-			},
-			save(formData) {
+			save() {
 				// upload data to the server
-				this.currentStatus = STATUS_SAVING;
-				const url = `/photos/upload`;
+				const formData = new FormData()
+				
+				let fileList = $('input[type="file"]')[0].files
+				console.log(fileList)
+				if (!fileList.length){
+					formData.append('photos', '')
+				}else{
+					Array
+						.from(Array(fileList.length).keys())
+						.map(x => {
+							formData.append('photos', fileList[x], fileList[x].name);
+						})
+					
+				}
 
-				upload(formData)
-					.then(wait(1500)) // DEV ONLY: wait for 1.5s 
-					.then(x => {
-						console.log({sucess: x})
-						this.uploadedFiles = [].concat(x);
-						this.currentStatus = STATUS_SUCCESS;
-						console.log({uploadedFiles: this.uploadedFiles})
+				// formData.append('photos', fileList[x], fileList[x].name)
+
+				this.$http.post(`/client/desain/upload`, formData, {
+					headers: {
+						Authorization: `Bearer ${this.token.api_token}`
+					}
+				})
+					.then(res => {
+						Vue.set(this.$data, 'response', res.data)
+						// console.log(res.data)
+						// this.$router.push('/')
 					})
-					.catch(err => {
-						console.log({error:err})
-						this.uploadError = err.response;
-						this.currentStatus = STATUS_FAILED;
-					});
-			},
-			filesChange(fieldName, fileList) {
-				// handle file changes
-				const formData = new FormData();
-
-				if (!fileList.length) return;
-
-				// append the files to FormData
-				Array
-					.from(Array(fileList.length).keys())
-					.map(x => {
-						formData.append(fieldName, fileList[x], fileList[x].name);
-					});
-
-				// save it
-				this.save(formData);
 			}
-		},
-		mounted() {
-			this.reset();
 		},
 	}
 </script>

@@ -21,6 +21,7 @@
 <script>
 	export default {
 		name: 'Produk',
+        props: ['id'],
 		data () {
 			return {
 				gambar: 'https://www.dntstore.com/components/com_eshop/osx/image/cache/data/upload/TN-N021782--Error-404-costume-not-found-halloween-t-shirt-tees-t-shirt-DNTStore-200x200.jpg',
@@ -31,10 +32,10 @@
 		},
 		methods: {
 			getData (){
-				this.$http.get(`/client/produk?all=true`)
-					.then(res => {
-						Vue.set(this.$data, 'list', res.data)
-					})
+                this.$http.get(`/client/produk/${this.id}?all=true`)
+                        .then(res => {
+                            Vue.set(this.$data, 'list', res.data)
+                        })
 			}
 		},
 		created (){

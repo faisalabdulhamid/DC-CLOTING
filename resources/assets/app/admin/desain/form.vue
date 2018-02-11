@@ -30,9 +30,10 @@
 		        <p>
 		          <a href="javascript:void(0)" @click="reset()">Upload again</a>
 		        </p>
+		        {{uploadedFiles[0].url.url}}
 		        <ul class="list-unstyled">
 		          <li v-for="item in uploadedFiles">
-		            <img :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
+		            <img :src="item.url.url" class="img-responsive img-thumbnail" :alt="item.originalName">
 		          </li>
 		        </ul>
 		      </div>

@@ -11,6 +11,7 @@ Route::get('user', function(Request $request){
 Route::post('api_token', 'LoginController@index');
 
 Route::get('produk', 'ProdukController@index');
+Route::get('produk/{id}', 'ProdukController@kategori');
 Route::get('desain', 'DesainController@index');
 Route::get('promosi', 'PromosiController@index');
 

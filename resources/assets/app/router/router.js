@@ -30,6 +30,12 @@ const router = new VueRouter({
 					component: require('./../client/produk')
 				},
 				{
+					path: '/produk/:id',
+					name: 'Produk Client Kategori',
+					component: require('./../client/produk'),
+					props: true
+				},
+				{
 					path: '/kuesioner',
 					name: 'Kuesioner Client',
 					component: require('./../client/kuesioner'),
@@ -151,29 +157,36 @@ const router = new VueRouter({
 		//transaksi
 		{
 			path: '/admin/transaksi',
-			name: 'transaksi',
+			name: 'Transaksi',
 			component: FullAdmin,
 			redirect: '/admin/transaksi',
 			meta: {AuthAdmin: true, isAdmin: 'admin'},
 			children: [
 				{
 					path: '/admin/transaksi',
-					name: 'Data transaksi',
+					name: 'Data Transaksi',
 					component: require('./../admin/transaksi/'),
 					meta: {AuthAdmin: true, isAdmin: 'admin'}
 				},
 				{
 					path: '/admin/transaksi/create',
-					name: 'Tambah transaksi',
+					name: 'Tambah Transaksi',
 					component: require('./../admin/transaksi/form'),
 					meta: {AuthAdmin: true, isAdmin: 'admin'}
 				},
 				{
 					path: '/admin/transaksi/:id/edit',
-					name: 'Edit transaksi',
+					name: 'Edit Transaksi',
 					component: require('./../admin/transaksi/form'),
 					props: true,
 					meta: {AuthAdmin: true, isAdmin: 'admin'}
+				},
+				{
+					path: '/admin/transaksi/:id/show',
+					name: 'Detail Transaksi',
+					component: require('./../admin/transaksi/show'),
+					props: true,
+					// meta: {AuthAdmin: true, isAdmin: 'admin'}
 				},
 			]
 		},

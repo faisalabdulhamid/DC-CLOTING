@@ -145,7 +145,12 @@ class DesainController extends Controller
 
             $desain = $user->desains()->create(['gambar' => url('/img/desain/'.$path) ]);
 
-            return url('/img/desain/'.$path);
+            return response()->json([
+                'title' => 'Uploaded!',
+                'message' => 'Data Berhasil Diupload.',
+                'url' => url('/img/desain/'.$path)
+            ], 201);
+            // return url('/img/desain/'.$path);
         }
     }
 }

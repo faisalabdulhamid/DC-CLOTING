@@ -71,12 +71,14 @@ class TransaksiController extends Controller
 
     public function show($id)
     {
-        $transaksi = Transaksi::with('produk')->find($id);
+        $transaksi = Transaksi::with(['produk'])->find($id);
 
         //{produk: '', harga: 0, sub_total: 0, qty: 1}
+        $data['pelanggan_nama'] = $transaksi->pelanggan->nama;
         $data['pelanggan'] = $transaksi->pelanggan_id;
         foreach ($transaksi->produk as $key => $value) {
             $data['detail'][$key]['produk'] = $value->id;
+            $data['detail'][$key]['produk_nama'] = $value->nama;
             $data['detail'][$key]['harga'] = $value->harga;
             $data['detail'][$key]['qty'] = $value->pivot->qty;
         }

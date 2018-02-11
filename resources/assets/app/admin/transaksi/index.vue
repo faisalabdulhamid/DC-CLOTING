@@ -16,7 +16,7 @@
 	        		<label for="" class="control-label col-md-3">Cari</label>
 	        		<div class="col-md-9">
 	        			<div class="input-group">
-							<input type="text" class="form-control" v-model="form_cari" placeholder="Cari Berdasarkan Tanggal Transaksi, Nama Pelanggan">
+							<input type="text" class="form-control" v-model="form_cari" placeholder="Cari Berdasarkan Tanggal Transaksi">
 							<span class="input-group-btn">
 								<button class="btn btn-default" type="button" @click="cari">Cari</button>
 							</span>
@@ -45,6 +45,7 @@
 							<button class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"> Action<span class="caret"></span> </button>
 							<ul class="dropdown-menu icons-right">
 								<li><router-link :to="'/admin/transaksi/'+item.id+'/edit'"><i class="icon-pencil3"></i> Ubah</router-link></li>
+								<li><router-link :to="'/admin/transaksi/'+item.id+'/show'"><i class="icon-eye"></i> Lihat Detail</router-link></li>
 							</ul>
 						</div>
 	                </td>

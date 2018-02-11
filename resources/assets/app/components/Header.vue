@@ -5,7 +5,12 @@
 				<a class="navbar-brand">DC CLOTHING</a>
 				<ul class="nav navbar-nav collapse" id="navbar-icons" v-if="!isAdmin">
 					<li><router-link :to="'/'">Home</router-link></li>
-					<li><router-link :to="'/produk'">Produk</router-link></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown">Produk</a>
+						<ul class="dropdown-menu dropdown-menu-left">
+							<li v-for="item in kategori"><router-link :to="'/produk/'+item.id">{{item.kategori}}</router-link></li>
+						</ul>
+					</li>
 					<li><router-link :to="'/kuesioner'">Kuesioner</router-link></li>
 					<li><router-link :to="'/desain'">Desain</router-link></li>
 					<li><router-link :to="'/about'">About</router-link></li>
@@ -58,6 +63,11 @@
 				return this.$session.get('is_client')
 			}
 		},
+		data () {
+			return {
+				kategori: []
+			}
+		},
 		methods: {
 			...mapActions({
 				'logout': 'logout'
@@ -67,7 +77,16 @@
 				this.logout()
 				// this.$router.push('/')
 				// window.reload()
+			},
+			getkategori (){
+				this.$http.get('/client/kategori')
+					.then(res => {
+						Vue.set(this.$data, 'kategori', res.data)
+					})
 			}
+		},
+		created (){
+			this.getkategori()
 		}
 	}
 </script>
