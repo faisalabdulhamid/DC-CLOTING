@@ -16,6 +16,14 @@ class PelangganController extends Controller
     {
         if (request()->cari) {
             $pelanggan = Pelanggan::with('kota.provinsi')
+                // ->whereHas('kota', function ($query)
+                // {
+                //     $query->where('kota', 'LIKE', '%'.request()->cari.'%');
+                // })
+                // ->whereHas('kota.provinsi', function ($query)
+                // {
+                //     $query->where('provinsi', 'LIKE', '%'.request()->cari.'%');
+                // })
                 ->where('nama', 'LIKE', '%'.request()->cari.'%')
                 ->orWhere('no_telepon', 'LIKE', '%'.request()->cari.'%')
                 ->paginate(10);

@@ -16,7 +16,7 @@
 	        		<label for="" class="control-label col-md-3">Cari</label>
 	        		<div class="col-md-9">
 	        			<div class="input-group">
-							<input type="text" class="form-control" v-model="form_cari">
+							<input type="text" class="form-control" v-model="form_cari" placeholder="Cari Nama Pegawai">
 							<span class="input-group-btn">
 								<button class="btn btn-default" type="button" @click="cari">Cari</button>
 							</span>

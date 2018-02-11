@@ -15,8 +15,8 @@ class PromosiController extends Controller
     public function index()
     {
         if (request()->cari) {
-            $promosi = Promosi::where('subjek', 'LIKE', '%'.request()->cari.'%')
-                ->orWhere('isi_promosi', 'LIKE', '%'.request()->cari.'%')
+            $promosi = Promosi::where('mulai_promosi', 'LIKE', '%'.request()->cari.'%')
+                ->orWhere('akhir_promosi', 'LIKE', '%'.request()->cari.'%')
                 ->tampil()->paginate(10);
             
             return response()

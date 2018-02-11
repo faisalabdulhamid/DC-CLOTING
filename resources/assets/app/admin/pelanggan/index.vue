@@ -16,7 +16,7 @@
 	        		<label for="" class="control-label col-md-3">Cari</label>
 	        		<div class="col-md-9">
 	        			<div class="input-group">
-							<input type="text" class="form-control" v-model="form_cari">
+							<input type="text" class="form-control" v-model="form_cari" placeholder="Cari Berdasarkan Nama, No Telepon">
 							<span class="input-group-btn">
 								<button class="btn btn-default" type="button" @click="cari">Cari</button>
 							</span>
@@ -30,20 +30,20 @@
 	            <thead>
 	              <tr>
 	                <th>Nama</th>
-	                <th>Email</th>
 	                <th>Telepon</th>
 	                <th>Provinsi</th>
 	                <th>Kota</th>
+	                <th>Email</th>
 	                <th v-if="status.status == 'marketing'" class="actions">Aksi</th>
 	              </tr>
 	            </thead>
 	            <tbody>
 	              <tr v-for="item in table.data">
 	                <td>{{item.nama}}</td>
-	                <td>{{item.email}}</td>
 	                <td>{{item.no_telepon}}</td>
 	                <td>{{item.kota.provinsi.provinsi}}</td>
 	                <td>{{item.kota.kota}}</td>
+	                <td>{{item.email}}</td>
 	                <td v-if="status.status == 'marketing'">
 						<div class="btn-group btn-group-sm pull-right">
 							<button class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"> Action<span class="caret"></span> </button>

@@ -13,10 +13,28 @@ class TransaksiController extends Controller
     {
         if (request()->cari) {
             $data = Transaksi::with(['produk', 'pelanggan'])
-                ->whereHas('pelanggan', function($q){
-                    $q->where('nama', 'LIKE', '%'.request()->cari.'%');
-                })
+                // ->whereHas('pelanggan', function($q){
+                //     $q->where('nama', 'LIKE', '%'.request()->cari.'%');
+                // })
+                ->where('tanggal', 'LIKE', '%'.request()->cari.'%')
+                // ->Orwhere('pelanggan.nama', 'LIKE', '%'.request()->cari.'%')
                 ->paginate(20);
+
+            // $data = DB::table('transaksi')
+            //     ->join('transaksi_detail', function ($join)
+            //     {
+            //         $join->on('transaksi.id', '=', 'transaksi_detail.transaksi_id')
+            //             ->join('produk', function ($join)
+            //             {
+            //                 $join->on('produk.id', '=', 'transaksi_detail.produk_id');
+            //             });
+            //     })
+            //     ->join('pelanggan', function ($join)
+            //     {
+            //         $join->on('transaksi.pelanggan_id', '=', 'pelanggan.id');
+            //     })
+            //     ->paginate(20);
+            //     // ->get();
             
             return response()->json($data);
         }

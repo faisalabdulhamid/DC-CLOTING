@@ -27,16 +27,26 @@
 	            <thead>
 	              <tr>
 	                <th>Kuesioner</th>
-	                <th class="actions">Nilai</th>
-	                <th class="actions">Keterangan</th>
 	              </tr>
 	            </thead>
-	            <tbody v-for="item in table">
+	            <tbody v-for="(item, i) in table">
 	              <tr>
 	                <td>{{item.soal}}</td>
-	                <th>{{ nilaiMax(item.jawaban).nilai}}</th>
-	                <th>{{ nilaiMax(item.jawaban).label}}</th>
 	              </tr>
+
+	            	<tr class="grafik">
+	            		<td>
+	            			<BarChart
+	            				:key="i" 
+	            				:data="item.jawaban" 
+	            				:soal="item.soal"
+								:height="150"
+	            				>
+	            				{{ item.jawaban }}		
+	            			</BarChart>
+	            		</td>
+	            	</tr>
+	            	
 	            </tbody>
 	            <tfoot v-if="table.next_page_url != null || table.prev_page_url != null">
 				  	<tr>
@@ -56,10 +66,15 @@
 
 <script>
 	import {mapActions, mapGetters} from 'vuex'
+	// import VueCharts from 'vue-chartjs'
+	import BarChart from './bar-chart.js'
+
 	export default{
 		name: 'Index',
+		// extends: Bar,
 		components: {
 			'Breadcrumb': require('./../../components/Breadcrumb'),
+			BarChart
 		},
 		computed: {
 			// ...mapGetters({'table':'table/table'}),
@@ -157,6 +172,18 @@
 			this.getKota()
 			this.setTable()
 		},
+		mounted () {
+			// this.renderChart({
+		 //      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+		 //      datasets: [
+		 //        {
+		 //          label: 'GitHub Commits',
+		 //          backgroundColor: '#f87979',
+		 //          data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
+		 //        }
+		 //      ]
+		 //    })
+		}
 	}
 </script>
 

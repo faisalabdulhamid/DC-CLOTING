@@ -87,7 +87,7 @@
 								})
 							
 							
-							// window.location = 'http://dc-clothing.com/#/admin/home'
+							// window.location = 'http://dc-clothing.laravel/#/admin/home'
 
 						}, 500);
 					})
