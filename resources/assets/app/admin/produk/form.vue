@@ -33,7 +33,7 @@
 					<div class="form-group">
 						<label for="gambar" class="control-label col-md-3">Gambar</label>
 						<div class="col-md-9">
-							<input type="file" id="gambar">
+							<input type="file" id="gambar" multiple accept="image/*">
 						</div>
 					</div>
 
@@ -89,17 +89,64 @@
 					})
 			},
 			handleSave (){
+				const formData = new FormData()
+
 				if (typeof this.id !== 'undefined') {
-					this.$http.put(`/dc/produk/${this.id}`, this.form, {
+					// let data = new FormData()
+				
+					let fileList = $('input[type="file"]')[0].files
+					// console.log(fileList)
+					if (!fileList.length){
+						formData.append('gambar', '')
+					}else{
+						Array
+							.from(Array(fileList.length).keys())
+							.map(x => {
+								formData.append('gambar', fileList[x], fileList[x].name);
+							})
+						
+					}
+
+					formData.append('kode', this.form.kode)
+					formData.append('nama', (typeof this.form.nama == 'undefined')? '': this.form.nama)
+					formData.append('harga', (typeof this.form.harga == 'undefined')? this.form.harga: '')
+					formData.append('kategori', (typeof this.form.kategori == 'undefined')? '': this.form.kategori)
+					console.log(this.form.kode)
+					// kode
+					this.$http.put(`/dc/produk/${this.id}`, formData, {
 						headers: {
-							Authorization: `Bearer ${this.login_admin.access_token}`
+							Authorization: `Bearer ${this.login_admin.access_token}`,
+							'Content-Type': 'multipart/form-data'
 						}
 					})
 					.then(() => {
 						this.$router.push('/admin/produk')
 					})
 				}else{
-					this.$http.post(`/dc/produk`, this.form, {
+				
+					let fileList = $('input[type="file"]')[0].files
+					// console.log(fileList)
+					if (!fileList.length){
+						formData.append('gambar', '')
+					}else{
+						Array
+							.from(Array(fileList.length).keys())
+							.map(x => {
+								formData.append('gambar', fileList[x], fileList[x].name);
+							})
+						
+					}
+
+					formData.append('kode', (typeof this.form.kode != 'undefined')? this.form.kode: '')
+					formData.append('nama', (typeof this.form.nama != 'undefined')? this.form.nama: '')
+					formData.append('harga', (typeof this.form.harga != 'undefined')? this.form.harga: '')
+					formData.append('kategori', (typeof this.form.kategori != 'undefined')? this.form.kategori: '')
+					// kode
+
+					// nama
+					// harga
+					// kategori
+					this.$http.post(`/dc/produk`, formData, {
 						headers: {
 							Authorization: `Bearer ${this.login_admin.access_token}`
 						}

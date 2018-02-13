@@ -32,7 +32,7 @@
 	                <th>Tanggal</th>
 	                <th>Pelanggan</th>
 	                <th>Total Bayar</th>
-	                <th v-if="status.status == 'marketing'">Aksi</th>
+	                <th>Aksi</th>
 	              </tr>
 	            </thead>
 	            <tbody>
@@ -40,11 +40,11 @@
 	                <td>{{item.tanggal}}</td>
 	                <td>{{item.pelanggan.nama}}</td>
 	                <td>{{ reduce(item.produk) }}</td>
-	                <td v-if="status.status == 'marketing'">
+	                <td >
 						<div class="btn-group btn-group-sm pull-right">
 							<button class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"> Action<span class="caret"></span> </button>
 							<ul class="dropdown-menu icons-right">
-								<li><router-link :to="'/admin/transaksi/'+item.id+'/edit'"><i class="icon-pencil3"></i> Ubah</router-link></li>
+								<li v-if="status.status == 'marketing'"><router-link :to="'/admin/transaksi/'+item.id+'/edit'"><i class="icon-pencil3"></i> Ubah</router-link></li>
 								<li><router-link :to="'/admin/transaksi/'+item.id+'/show'"><i class="icon-eye"></i> Lihat Detail</router-link></li>
 							</ul>
 						</div>

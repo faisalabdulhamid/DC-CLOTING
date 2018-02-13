@@ -49,13 +49,13 @@ _http.interceptors.response.use((response) => {
         })
         
         swal({
-          title: error.response.data.message,
+          title: 'Data Tidak Sesuai',
           html: contentHtml,
           type: 'error',
           timer: 5000,
         })	
     }else{
-    	swal(error.response.statusText, error.response.data.message, "error")
+    	swal('', error.response.data.message, "error")
     }
     return Promise.reject(error.response);
 })

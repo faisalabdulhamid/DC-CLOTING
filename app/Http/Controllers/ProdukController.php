@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Entities\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ProdukController extends Controller
 {
@@ -64,24 +66,38 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'kategori_id' => 'required',
+            'kategori' => 'required',
             'kode' => 'required|unique:produk',
             'nama' => 'required',
             'harga' => 'required|numeric',
-            'gambar' => 'required',
+            'gambar' => 'required|file|max:2000',
         ]);
 
-        $produk = new Produk();
-        $produk->kategori_id = $request->kategori;
-        $produk->kode = $request->kode;
-        $produk->nama = $request->nama;
-        $produk->harga = $request->harga;
-        $produk->gambar = $request->gambar;
-        $produk->save();
+        $gambar = $request->file('gambar');
 
-        return response()->json([
-            'message' => 'Data Berhasil Ditambahkan'
-        ], 201);
+        $filename = $gambar->getClientOriginalName();
+        if ($gambar->isValid()) {
+            $path = $gambar->store('');
+            // Storage::disk('desain')->put($filename);
+
+            // $desain = $user->desains()->create(['gambar' => url('/img/desain/'.$path) ]);
+
+            $produk = new Produk();
+            $produk->kategori_id = $request->kategori;
+            $produk->kode = $request->kode;
+            $produk->nama = $request->nama;
+            $produk->harga = $request->harga;
+            $produk->gambar = url('/img/desain/'.$path);
+            $produk->pegawai_id = Auth::user()->id;
+            $produk->save();
+
+            return response()->json([
+                'title' => 'Uploaded!',
+                'message' => 'Data Berhasil Di tambahkan.',
+                'url' => url('/img/desain/'.$path)
+            ], 201);
+            // return url('/img/desain/'.$path);
+        }
     }
 
     /**
@@ -101,6 +117,7 @@ class ProdukController extends Controller
             'harga' => $produk->harga,
             'gambar' => $produk->gambar,
             'kategori' => $produk->kategori_id,
+            
         ];
 
         return response()->json($produk);
@@ -128,24 +145,37 @@ class ProdukController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'kategori_id' => 'required',
-            'kode' => 'required|unique:produk',
+            'kategori' => 'required',
+            'kode' => 'required',
             'nama' => 'required',
             'harga' => 'required|numeric',
-            'gambar' => 'required',
+            'gambar' => 'required|max:2000',
         ]);
 
-        $produk = Produk::find($id);
-        $produk->kategori_id = $request->kategori;
-        $produk->kode = $request->kode;
-        $produk->nama = $request->nama;
-        $produk->harga = $request->harga;
-        $produk->gambar = $request->gambar;
-        $produk->save();
+        $gambar = $request->file('gambar');
 
-        return response()->json([
-            'message' => 'Data Berhasil diubah'
-        ], 201);
+        $filename = $gambar->getClientOriginalName();
+        
+        if ($gambar->isValid()) {
+            $path = $gambar->store('');
+
+            $produk = Produk::find($id);
+            $produk->kategori_id = $request->kategori;
+            $produk->kode = $request->kode;
+            $produk->nama = $request->nama;
+            $produk->harga = $request->harga;
+            $produk->gambar = url('/img/desain/'.$path);
+            $produk->pegawai_id = Auth::user()->id;
+            $produk->save();
+
+            return response()->json([
+                'title' => 'Uploaded!',
+                'message' => 'Data Berhasil Diubah.',
+                'url' => url('/img/desain/'.$path),
+            ], 201);
+
+        }
+        return response()->json(['title']);
     }
 
     /**

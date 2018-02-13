@@ -91,6 +91,7 @@
 		methods: {
 			handleSave (){
 				if (typeof this.id !== 'undefined') {
+					const form = 
 					this.$http.put(`/dc/promosi/${this.id}`, this.form, {
 						headers: {
 							Authorization: `Bearer ${this.login_admin.access_token}`
@@ -100,6 +101,7 @@
 						this.$router.push('/admin/promosi')
 					})
 				}else{
+					const form = 
 					this.$http.post(`/dc/promosi`, this.form, {
 						headers: {
 							Authorization: `Bearer ${this.login_admin.access_token}`
@@ -113,7 +115,7 @@
 		},
 		watch: {
 			'endTime.time': function () {
-				this.form.awal_promosi = this.endTime.time
+				this.form.mulai_promosi = this.endTime.time
 			},
 			'startTime.time': function () {
 				this.form.akhir_promosi = this.startTime.time

@@ -98,12 +98,10 @@ class TransaksiController extends Controller
         ]);
         // return response()->json($request->detail);
         DB::transaction(function()use($request, $id){
-            $transaksi = Transaksi::find($id)->create([
-                'pelanggan_id' => $request->pelanggan,
-            ]);
+            $transaksi = Transaksi::find($id);
 
             foreach ($request->detail as $key => $val) {
-                $transaksi->produk()->sync($val['produk'], ['qty' => $val['qty'], 'sub_total' => $val['sub_total']]);
+                $transaksi->produk()->sync([$val['produk'] =>['qty' => $val['qty'], 'sub_total' => $val['sub_total']]]);
             }
         });
 
