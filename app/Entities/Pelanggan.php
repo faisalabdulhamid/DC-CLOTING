@@ -14,7 +14,7 @@ class Pelanggan extends User
     protected $table = 'pelanggan';
 
     protected $hidden = [
-    	'created_at', 'updated_at'
+    	'created_at', 'updated_at'//, 'api_token'
     ];
 
     public static function init()

@@ -34,7 +34,7 @@ class Kuesioner extends Model
 
     public function jawabans()
     {
-        return $this->belongsToMany(Pelanggan::class, 'jawaban_kuesioner', 'kuesioner_id', 'pelanggan_id');
+        return $this->belongsToMany(Pelanggan::class, 'jawaban_kuesioner', 'kuesioner_id', 'pelanggan_id')->withPivot('nilai');
     }
 
     public function scopeSangatPerlu($query)

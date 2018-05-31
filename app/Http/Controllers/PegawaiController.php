@@ -59,10 +59,11 @@ class PegawaiController extends Controller
         $pegawai->nama = $request->nama;
         $pegawai->email = $request->email;
         $pegawai->status = $request->status;
-        $pegawai->password = $request->password;
+        $pegawai->password = bcrypt($request->password);
         $pegawai->save();
 
         return response()->json([
+            'title' => 'Berhasil.',
             'message' => 'Data Berhasil Ditambahkan'
         ], 201);
     }
@@ -108,11 +109,12 @@ class PegawaiController extends Controller
         $pegawai->email = $request->email;
         $pegawai->status = $request->status;
         if(!is_null($request->password)){
-            $pegawai->password = $request->password;    
+            $pegawai->password = bcrypt($request->password);    
         }
         $pegawai->save();
 
         return response()->json([
+            'title' => 'Berhasil.',
             'message' => 'Data Berhasil Diubah'
         ], 201);
     }
@@ -128,6 +130,7 @@ class PegawaiController extends Controller
         $pegawai->delete();
 
         return response()->json([
+            'title' => 'Berhasil.',
             'message' => 'Data Berhasil Dihapus'
         ], 201);
     }

@@ -15,23 +15,24 @@ class PromosiController extends Controller
     public function index()
     {
         if (request()->cari) {
-            $promosi = Promosi::where('mulai_promosi', 'LIKE', '%'.request()->cari.'%')
-                ->orWhere('akhir_promosi', 'LIKE', '%'.request()->cari.'%')
-                ->tampil()->paginate(10);
-            
+            $promosi = Promosi::where('mulai_promosi', 'LIKE', '%' . request()->cari . '%')
+                ->orWhere('akhir_promosi', 'LIKE', '%' . request()->cari . '%')
+                ->paginate(10);
+
             return response()
                 ->json($promosi);
         }
+
         if (request()->all) {
             $promosi = Promosi::tampil()->get();
-            
+
             return response()
                 ->json($promosi);
         }
 
         if (request()->wantsJson()) {
-            $promosi = Promosi::tampil()->paginate(10);
-            
+            $promosi = Promosi::paginate(10);
+
             return response()
                 ->json($promosi);
         }
@@ -56,16 +57,27 @@ class PromosiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'subjek' => 'required',
-            'isi_promosi' => 'required',
+            'subjek'        => 'required',
+            'isi_promosi'   => 'required',
             'mulai_promosi' => 'required|date',
-            'akhir_promosi' => 'required|date'
+            'akhir_promosi' => 'required|date',
+            'gambar'        => 'required',
         ]);
 
-        Promosi::create($request->all());
+        $gambar = $request->file('gambar')->store('', 'img');
+
+        Promosi::create([
+            'subjek'        => $request->subjek,
+            'isi_promosi'   => $request->isi_promosi,
+            'mulai_promosi' => $request->mulai_promosi,
+            'akhir_promosi' => $request->akhir_promosi,
+            'status'        => $request->status,
+            'gambar'        => '/img/' . $gambar,
+        ]);
 
         return response()->json([
-            'message' => 'Data Berhasil Ditambahkan'
+            'title'   => 'Berhasil',
+            'message' => 'Data Berhasil Ditambahkan',
         ], 201);
     }
 
@@ -102,17 +114,29 @@ class PromosiController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'subjek' => 'required',
-            'isi_promosi' => 'required',
+            'subjek'        => 'required',
+            'isi_promosi'   => 'required',
             'mulai_promosi' => 'required|date',
-            'akhir_promosi' => 'required|date'
+            'akhir_promosi' => 'required|date',
+            'gambar'        => 'required',
         ]);
 
         $promosi = Promosi::find($id);
-        $promosi->update($request->all());
+        // $promosi->update($request->all());
+        $gambar = $request->file('gambar')->store('', 'img');
+
+        $promosi->update([
+            'subjek'        => $request->subjek,
+            'isi_promosi'   => $request->isi_promosi,
+            'mulai_promosi' => $request->mulai_promosi,
+            'akhir_promosi' => $request->akhir_promosi,
+            'status'        => $request->status,
+            'gambar'        => '/img/' . $gambar,
+        ]);
 
         return response()->json([
-            'message' => 'Data Berhasil Diubah'
+            'title'   => 'Berhasil',
+            'message' => 'Data Berhasil Diubah',
         ], 201);
     }
 
@@ -127,7 +151,8 @@ class PromosiController extends Controller
         Promosi::find($id)->delete();
 
         return response()->json([
-            'message' => 'Data Berhasil Dihapus'
+            'title'   => 'Berhasil',
+            'message' => 'Data Berhasil Dihapus',
         ], 201);
     }
 }

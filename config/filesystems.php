@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'desain'),
+    'default' => 'img',
 
     /*
     |--------------------------------------------------------------------------
@@ -55,9 +55,9 @@ return [
             'visibility' => 'public',
         ],
 
-        'desain' => [
+        'img' => [
             'driver' => 'local',
-            'root'   => public_path().'/img/desain',
+            'root'   => public_path().'/img',
         ],
 
         's3' => [

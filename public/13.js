@@ -1,1 +1,0 @@
-webpackJsonp([13],{92:function(e,t,n){var r=n(38)(n(93),n(94),!1,null,null,null);e.exports=r.exports},93:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={name:"Footer-Vue"}},94:function(e,t){e.exports={render:function(){var e=this.$createElement;return(this._self._c||e)("footer",{staticClass:"footer"})},staticRenderFns:[]}}});

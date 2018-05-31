@@ -28,14 +28,18 @@ Route::resource('kategori', 'KategoriController', [
 	'except' => ['edit', 'create']
 ])->middleware('auth:api');
 Route::resource('produk', 'ProdukController', [
-	'except' => ['edit', 'create']
+	'except' => ['edit', 'create', 'update']
 ])->middleware('auth:api');
+Route::post('produk/{id}', 'ProdukController@update');
+
 Route::resource('kuesioner', 'KuesionerController', [
 	'except' => ['edit', 'create']
 ])->middleware('auth:api');
 Route::resource('promosi', 'PromosiController', [
-	'except' => ['edit', 'create']
+	'except' => ['edit', 'create', 'update']
 ])->middleware('auth:api');
+Route::post('/promosi/{id}', 'PromosiController@update');
+
 Route::get('/hasil-kuesioner', 'KuesionerController@hasil')
 	->middleware('auth:api');
 Route::resource('desain', 'DesainController', [
@@ -51,8 +55,8 @@ Route::middleware('auth:api')->prefix('select')->group(function(){
 		$provinsi = App\Entities\Provinsi::all();
 		return response()->json($provinsi);
 	});
-	Route::get('kota', function(){
-		$kota = App\Entities\Kota::all();
+	Route::get('kota/{provinsi}', function($provinsi){
+		$kota = App\Entities\Kota::where('provinsi_id', $provinsi)->get();
 		return response()->json($kota);
 	});
 	Route::get('kategori', function(){

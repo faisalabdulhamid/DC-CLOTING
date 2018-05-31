@@ -13,8 +13,8 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/interface/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/interface/jquery-ui.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/plugins/charts/sparkline.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/plugins/forms/uniform.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/plugins/forms/select2.min.js') }}"></script>
@@ -39,7 +39,7 @@
 <script type="text/javascript" src="{{ asset('js/plugins/interface/fullcalendar.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/plugins/interface/timepicker.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/plugins/interface/collapsible.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/interface/bootstrap.min.js') }}"></script>
 </head>
 <body class="sidebar-wide">
   <div id="root">

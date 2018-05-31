@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Promosi extends Model
 {
     protected $table = 'promosi';
-    protected $fillable = ['subjek', 'isi_promosi', 'mulai_promosi', 'akhir_promosi', 'status', 'pegawai_id'];
+    protected $fillable = ['subjek', 'isi_promosi', 'mulai_promosi', 'akhir_promosi', 'status', 'pegawai_id', 'gambar'];
     protected $hidden = [
         'created_at', 'updated_at'
     ];

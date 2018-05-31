@@ -71,10 +71,13 @@ class PelangganController extends Controller
         $pelanggan = new Pelanggan();
         $pelanggan->nama = $request->nama;
         $pelanggan->no_telepon = $request->no_telepon;
+        $pelanggan->provinsi_id = $request->provinsi;
         $pelanggan->kota_id = $request->kota;
+        $pelanggan->api_token = bcrypt($request->no_telepon);
         $pelanggan->save();
 
         return response()->json([
+            'title' => 'Berhasil',
             'message' => 'Data Berhasil Ditambahkan'
         ], 201);
     }
@@ -88,6 +91,12 @@ class PelangganController extends Controller
     public function show($id)
     {
         $pelanggan = Pelanggan::find($id);
+        $pelanggan = [
+            'nama' => $pelanggan->nama,
+            'no_telepon' => $pelanggan->no_telepon,
+            'provinsi' => $pelanggan->provinsi_id,
+            'kota' => $pelanggan->kota_id
+        ];
         return response()->json($pelanggan, 200);
     }
 
@@ -124,6 +133,7 @@ class PelangganController extends Controller
         $pelanggan->save();
 
         return response()->json([
+            'title' => 'Berhasil',
             'message' => 'Data Berhasil Diubah'
         ], 201);
     }
@@ -140,6 +150,7 @@ class PelangganController extends Controller
         $pelanggan->delete();
 
         return response()->json([
+            'title' => 'Berhasil',
             'message' => 'Data Berhasil Dihapus'
         ], 201);
     }

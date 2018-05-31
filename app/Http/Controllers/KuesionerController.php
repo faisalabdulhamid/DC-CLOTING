@@ -47,6 +47,7 @@ class KuesionerController extends Controller
         $kuesioner->save();
 
         return response()->json([
+            'title' => 'Berhasil',
             'message' => 'Data Berhasil Ditambahkan'
         ], 201);
     }
@@ -92,6 +93,7 @@ class KuesionerController extends Controller
         $kuesioner->save();
 
         return response()->json([
+            'title' => 'Berhasil',
             'message' => 'Data Berhasil Diubah'
         ], 201);
     }
@@ -107,6 +109,7 @@ class KuesionerController extends Controller
         $kuesioner->delete();
 
         return response()->json([
+            'title' => 'Berhasil',
             'message' => 'Data Berhasil Dihapus'
         ], 201);
     }
@@ -118,46 +121,89 @@ class KuesionerController extends Controller
         $kuesioner = new Kuesioner();
         $kuesioner = $kuesioner->has('jawabans');
 
-        if (request()->kota) {
-            $kota = request()->kota;
-            $kuesioner = $kuesioner->whereHas('jawabans', function($q) use($kota){
-                $q->where('kota_id', $kota);
-            });
-        }
-        
         $data = [];
 
-        foreach ($kuesioner->get() as $key_1 => $k) {
-            // (totalResponden / jumlahResponden) * 100
-            $row = [];
-            $row['soal'] = $k->soal;
+        if (request()->kota) {
+            $kota = request()->kota;
+            $kuesioner = $kuesioner->with(['jawabans' => function($query) use($kota){
+                $query->where('kota_id', $kota);
+            }]);
 
-            $responden = $k->withCount('jawabans') ->get();
-            // $row['data'] = $k;
-            // $row['responden'] = $responden;
+            $responden = 0;
+            $kuesioner = $kuesioner->get();
+
+            // $data[] = $kuesioner;
+
+            foreach ($kuesioner as $key => $value) {
+                $row = [];
+                $row['soal'] = $value->soal;
+
+                $responden = count($value->jawabans);
+
+                if ($responden > 0) {
+                    // jawaban soal
+                    $jawaban_soal = [];
+                    foreach (json_decode($kuesioner[$key]->jawaban) as $key_jawab_soal => $j) {
+                        $dt_ = [];
+
+                        $dt_['jumlah_responden'] = $responden;
+                        $dt_['label'] = $j->key;
 
 
-            $dt = [];
-            foreach (json_decode($k->jawaban) as $key => $j) { //JSON jawaban in quesioner
-                $dt_ = [];
+                        //Jawaban Pelanggan
+                        $jumlah_responden = 0;
+                        foreach ($kuesioner[$key]->jawabans as $key_jawab => $jawaban) {
+                            if ($j->value == $jawaban->pivot->nilai) {
+                                $jumlah_responden++;
+                            }
+                        }
+                        $dt_['jumlah_responden_perjawaban'] = $jumlah_responden;
+                        $dt_['nilai'] = round(($jumlah_responden/$responden)*100, 2);
 
 
-                $key_soal = $k->withCount(['jawabans' => function($query) use($j) {
-                            $query->where('nilai', $j->value);
-                        }])->get();
-                
-                $dt_['jumlah_responden'] = $jumlah_responden = $responden[$key_1]->jawabans_count;
+                        $jawaban_soal[] = $dt_;
+                    }
+                    $row['jawaban'] = $jawaban_soal;
+                    $data[] = $row;  
 
-                // $dt_['nilai'] = $key_soal[$key_1]->jawabans_count;//round(($key_soal[$key_1]->jawaban_count/$jumlah_responden)*100, 2);
-                $dt_['nilai'] = round(($key_soal[$key_1]->jawabans_count/$jumlah_responden)*100, 2);
-                $dt_['label'] = json_decode($key_soal[$key_1]->jawaban)[$key]->key;
-                $dt[] = $dt_;
+                }
+
+                                  
+            }
+            
+        }else {
+
+            foreach ($kuesioner->get() as $key_1 => $k) {
+                // (totalResponden / jumlahResponden) * 100
+                $row = [];
+                $row['soal'] = $k->soal;
+
+                $responden = $k->withCount('jawabans')->get();
+
+                $dt = [];
+                foreach (json_decode($k->jawaban) as $key => $j) { //JSON jawaban in quesioner
+                    $dt_ = [];
+
+
+                    $key_soal = $k->withCount(['jawabans' => function($query) use($j) {
+                                $query->where('nilai', $j->value);
+                            }])->get();
+                    
+                    $dt_['jumlah_responden'] = $jumlah_responden = $responden[$key_1]->jawabans_count;
+
+                    // $dt_['nilai'] = $key_soal[$key_1]->jawabans_count;//round(($key_soal[$key_1]->jawaban_count/$jumlah_responden)*100, 2);
+                    $dt_['nilai'] = round(($key_soal[$key_1]->jawabans_count/$jumlah_responden)*100, 2);
+                    $dt_['label'] = json_decode($key_soal[$key_1]->jawaban)[$key]->key;
+                    $dt[] = $dt_;
+                }
+
+                $row['jawaban'] = $dt;
+
+                $data[] = $row;
             }
 
-            $row['jawaban'] = $dt;
-
-            $data[] = $row;
         }
+        
 
         return response()->json($data);
     }

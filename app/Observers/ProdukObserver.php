@@ -14,6 +14,6 @@ class ProdukObserver
 
     public function updating(Produk $produk)
     {
-    	$produk->pegawai_id = Auth::user()->id;
+    	// $produk->pegawai_id = Auth::user()->id;
     }
 }
